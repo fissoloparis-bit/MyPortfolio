@@ -324,15 +324,80 @@ const CONFIG = {
     items.forEach(el => io.observe(el));
   }
 
-  /* --- cursor-tracking glow on pill buttons --- */
+  /* --- cursor-tracking glow on pill buttons + magnetic pull --- */
   function wireButtonGlow() {
     document.querySelectorAll(".btn-glow").forEach(btn => {
       btn.addEventListener("mousemove", e => {
         const rect = btn.getBoundingClientRect();
-        btn.style.setProperty("--x", `${e.clientX - rect.left}px`);
-        btn.style.setProperty("--y", `${e.clientY - rect.top}px`);
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        btn.style.setProperty("--x", `${x}px`);
+        btn.style.setProperty("--y", `${y}px`);
+
+        const cx = x - rect.width / 2;
+        const cy = y - rect.height / 2;
+        btn.style.transform = `translate(${cx * 0.18}px, ${cy * 0.35}px)`;
+      });
+      btn.addEventListener("mouseleave", () => {
+        btn.style.transform = "";
       });
     });
+  }
+
+  /* --- 3D tilt on testimonial cards --- */
+  function wireCardTilt() {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    document.querySelectorAll(".testimonial").forEach(card => {
+      card.addEventListener("mousemove", e => {
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width - 0.5;
+        const py = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(700px) rotateX(${py * -8}deg) rotateY(${px * 10}deg) translateY(-4px)`;
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+  }
+
+  /* --- custom cursor that grows over interactive elements --- */
+  function wireCustomCursor() {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    const dot = document.createElement("div");
+    dot.className = "cursor-dot";
+    document.body.appendChild(dot);
+
+    let x = window.innerWidth / 2, y = window.innerHeight / 2;
+    let tx = x, ty = y;
+
+    document.addEventListener("mousemove", e => { tx = e.clientX; ty = e.clientY; });
+
+    function loop() {
+      x += (tx - x) * 0.2;
+      y += (ty - y) * 0.2;
+      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+      requestAnimationFrame(loop);
+    }
+    loop();
+
+    document.querySelectorAll("a, button").forEach(el => {
+      el.addEventListener("mouseenter", () => dot.classList.add("is-active"));
+      el.addEventListener("mouseleave", () => dot.classList.remove("is-active"));
+    });
+  }
+
+  /* --- hero content fades and settles as you scroll past it --- */
+  function wireHeroScrollFade() {
+    const content = document.querySelector(".hero__content");
+    const hero = document.getElementById("hero");
+    function update() {
+      const rect = hero.getBoundingClientRect();
+      const progress = Math.min(Math.max(-rect.top / (rect.height * 0.8), 0), 1);
+      content.style.opacity = String(1 - progress);
+      content.style.transform = `scale(${1 - progress * 0.08}) translateY(${progress * -20}px)`;
+    }
+    document.addEventListener("scroll", update, { passive: true });
+    update();
   }
 
   /* --- mobile menu --- */
@@ -375,5 +440,8 @@ const CONFIG = {
   wireReveals();
   wireRevealObserver();
   wireButtonGlow();
+  wireCardTilt();
+  wireCustomCursor();
+  wireHeroScrollFade();
   wireMobileMenu();
 })();
