@@ -28,6 +28,7 @@ html{ scroll-behavior: smooth; }
 
 body{
   margin: 0;
+  cursor: default;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--body);
@@ -38,6 +39,28 @@ body{
 a{ color: inherit; }
 :focus-visible{ outline: 2px solid var(--pill); outline-offset: 3px; }
 h1, h2{ font-family: var(--display); margin: 0; }
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+.cursor-dot{
+  position: fixed;
+  top: 0; left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ink);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 200;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease;
+  will-change: transform;
+}
+.cursor-dot.is-active{ width: 46px; height: 46px; }
+@media (pointer: coarse), (prefers-reduced-motion: reduce){
+  .cursor-dot{ display: none; }
+}
 
 /* ============================================================
    SCROLL PROGRESS BAR
@@ -240,6 +263,7 @@ h1, h2{ font-family: var(--display); margin: 0; }
   position: relative;
   z-index: 2;
   max-width: 46rem;
+  will-change: transform, opacity;
 }
 .hero__headline{
   font-size: clamp(2.2rem, 6vw, 4.4rem);
@@ -274,6 +298,7 @@ h1, h2{ font-family: var(--display); margin: 0; }
   transition: transform 0.2s ease;
 }
 .hero__cta:hover{ transform: translateY(-2px); }
+.hero__cta{ will-change: transform; }
 @keyframes rise-in{ to{ opacity: 1; transform: translateY(0); } }
 
 /* ============================================================
@@ -533,10 +558,11 @@ h1, h2{ font-family: var(--display); margin: 0; }
   border-radius: 16px;
   padding: 1.75rem;
   background: var(--bg-raised);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.15s ease, border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 .testimonial:hover{
-  transform: translateY(-4px);
   border-color: rgba(255,255,255,0.25);
 }
 .testimonial__quote{
