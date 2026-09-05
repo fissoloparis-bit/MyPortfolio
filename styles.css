@@ -514,6 +514,111 @@ h1, h2{ font-family: var(--display); margin: 0; }
 .contact__socials a:hover::after{ right: 0; }
 
 /* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.testimonials{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+.testimonials__grid{
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.testimonial{
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.75rem;
+  background: var(--bg-raised);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.testimonial:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.25);
+}
+.testimonial__quote{
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.testimonial__quote::before{ content: '\201C'; }
+.testimonial__quote::after{ content: '\201D'; }
+.testimonial__byline{
+  margin-top: 1.25rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+.testimonial__byline strong{ color: var(--ink); font-weight: 500; }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+.faq__list{
+  margin-top: 2rem;
+  max-width: 44rem;
+  border-top: 1px solid var(--line);
+}
+.faq-item{ border-bottom: 1px solid var(--line); }
+.faq-item__q{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: none;
+  border: none;
+  color: var(--ink);
+  text-align: left;
+  font: inherit;
+  font-family: var(--display);
+  font-size: 1.02rem;
+  font-weight: 500;
+  padding: 1.35rem 0;
+  cursor: pointer;
+}
+.faq-item__icon{
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+.faq-item__icon::before,
+.faq-item__icon::after{
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  background: var(--ink);
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.faq-item__icon::before{ width: 12px; height: 1.5px; }
+.faq-item__icon::after{ width: 1.5px; height: 12px; }
+.faq-item.is-open .faq-item__icon::after{ transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+.faq-item__a-wrap{
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+.faq-item.is-open .faq-item__a-wrap{ grid-template-rows: 1fr; }
+.faq-item__a-inner{ overflow: hidden; }
+.faq-item__a{
+  margin: 0 0 1.35rem;
+  color: var(--muted);
+  max-width: 40rem;
+}
+
+/* ============================================================
    SCROLL REVEAL (fade + rise, triggered once as elements enter view)
    ============================================================ */
 .reveal{
