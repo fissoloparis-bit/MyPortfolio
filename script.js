@@ -134,7 +134,8 @@ const CONFIG = {
     const stepsEl = document.querySelector("[data-steps]");
     CONFIG.steps.forEach((step, index) => {
       const li = document.createElement("li");
-      li.className = "step";
+      li.className = "step reveal";
+      li.style.transitionDelay = `${index * 0.08}s`;
       li.innerHTML = `
         <span class="step__index">${index + 1}</span>
         <h3 class="step__title">${step.title}</h3>
@@ -146,8 +147,10 @@ const CONFIG = {
 
   function renderStats() {
     const grid = document.querySelector("[data-stats]");
-    CONFIG.stats.forEach(stat => {
+    CONFIG.stats.forEach((stat, index) => {
       const div = document.createElement("div");
+      div.className = "reveal";
+      div.style.transitionDelay = `${index * 0.1}s`;
       div.innerHTML = `
         <div class="stat__number" data-count="${stat.value}" data-suffix="${stat.suffix}">0${stat.suffix}</div>
         <div class="stat__label">${stat.label}</div>
@@ -224,6 +227,63 @@ const CONFIG = {
     io.observe(statsSection);
   }
 
+  /* --- generic scroll reveal for headings, stats, steps, etc. --- */
+  function wireRevealObserver() {
+    const items = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    items.forEach(el => io.observe(el));
+  }
+
+  /* --- cursor-tracking glow on pill buttons --- */
+  function wireButtonGlow() {
+    document.querySelectorAll(".btn-glow").forEach(btn => {
+      btn.addEventListener("mousemove", e => {
+        const rect = btn.getBoundingClientRect();
+        btn.style.setProperty("--x", `${e.clientX - rect.left}px`);
+        btn.style.setProperty("--y", `${e.clientY - rect.top}px`);
+      });
+    });
+  }
+
+  /* --- mobile menu --- */
+  function wireMobileMenu() {
+    const toggle = document.querySelector("[data-menu-toggle]");
+    const panel = document.querySelector("[data-mobile-nav]");
+
+    function setOpen(open) {
+      panel.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      document.body.style.overflow = open ? "hidden" : "";
+    }
+
+    toggle.addEventListener("click", () => {
+      setOpen(toggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    panel.querySelectorAll("[data-mobile-link]").forEach(link => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") setOpen(false);
+    });
+
+    // if the viewport is resized past the mobile breakpoint while open, close it
+    const mq = window.matchMedia("(min-width: 761px)");
+    mq.addEventListener("change", e => { if (e.matches) setOpen(false); });
+  }
+
   fillStaticText();
   renderTabs();
   renderSteps();
@@ -231,4 +291,7 @@ const CONFIG = {
   wireScrollProgress();
   wireParallax();
   wireReveals();
+  wireRevealObserver();
+  wireButtonGlow();
+  wireMobileMenu();
 })();
