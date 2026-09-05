@@ -27,8 +27,19 @@
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="site-header__cta" href="#contact">Get in touch</a>
+    <a class="site-header__cta btn-glow" href="#contact">Get in touch</a>
+    <button class="site-header__toggle" data-menu-toggle aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </header>
+
+  <div class="mobile-nav" id="mobile-nav" data-mobile-nav>
+    <a href="#about" data-mobile-link>About</a>
+    <a href="#approach" data-mobile-link>Approach</a>
+    <a href="#experience" data-mobile-link>Experience</a>
+    <a href="#contact" data-mobile-link>Contact</a>
+    <a class="mobile-nav__cta btn-glow" href="#contact" data-mobile-link>Get in touch</a>
+  </div>
 
   <main id="top">
 
@@ -40,13 +51,13 @@
       <div class="hero__content">
         <h1 class="hero__headline" data-headline></h1>
         <p class="hero__sub" data-sub></p>
-        <a class="hero__cta" href="#approach" data-cta></a>
+        <a class="hero__cta btn-glow" href="#approach" data-cta></a>
       </div>
     </section>
 
     <section class="tabs" id="about">
-      <p class="eyebrow-plain" data-tabs-eyebrow></p>
-      <h2 class="section-heading" data-tabs-heading></h2>
+      <p class="eyebrow-plain reveal" data-tabs-eyebrow></p>
+      <h2 class="section-heading reveal" data-tabs-heading></h2>
 
       <div class="tabs__nav" data-tabs-nav></div>
 
@@ -57,7 +68,7 @@
     </section>
 
     <section class="approach" id="approach">
-      <h2 class="section-heading" data-approach-heading></h2>
+      <h2 class="section-heading reveal" data-approach-heading></h2>
       <ol class="steps" data-steps>
         <div class="steps__line"><div class="steps__line-fill" data-steps-fill></div></div>
       </ol>
@@ -68,9 +79,9 @@
     </section>
 
     <section class="contact" id="contact">
-      <h2 class="section-heading" data-contact-heading></h2>
-      <a class="contact__email" data-email href="#"></a>
-      <ul class="contact__socials" data-socials></ul>
+      <h2 class="section-heading reveal" data-contact-heading></h2>
+      <a class="contact__email reveal" data-email href="#"></a>
+      <ul class="contact__socials reveal" data-socials></ul>
     </section>
 
   </main>
