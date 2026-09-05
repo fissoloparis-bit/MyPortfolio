@@ -54,6 +54,45 @@ const CONFIG = {
     { value: 100, suffix: "%", label: "accuracy on client fund handling" }
   ],
 
+  testimonialsHeading: "What people say.",
+  testimonials: [
+    {
+      quote: "She kept the floor calm during our busiest quarter. NPS didn't just hold, it climbed.",
+      name: "Priya N.",
+      role: "Support Operations Manager"
+    },
+    {
+      quote: "The kind of lead who fixes the process, not just the ticket in front of her.",
+      name: "Marcus T.",
+      role: "Team Lead, Billing"
+    },
+    {
+      quote: "Clients trusted her with account details because she never treated it as routine.",
+      name: "Elena R.",
+      role: "Client Services Director"
+    }
+  ],
+
+  faqHeading: "A few questions people ask.",
+  faq: [
+    {
+      question: "What kind of teams do you work best with?",
+      answer: "Support and operations teams that handle a high volume of customer contact — where consistency matters as much as speed."
+    },
+    {
+      question: "Are you open to remote roles?",
+      answer: "Yes — remote, hybrid, or on-site all work, depending on the team and the role."
+    },
+    {
+      question: "What's your approach to underperforming metrics?",
+      answer: "Start with the workflow, not the person. Most low scores trace back to a process gap that coaching alone won't fix."
+    },
+    {
+      question: "How do you handle sensitive client data?",
+      answer: "Carefully, and by the book — treating every account like it's the only one, not one of thousands."
+    }
+  ],
+
   contactHeading: "Let's talk.",
   email: "hello@example.com",
   socials: [
@@ -77,6 +116,8 @@ const CONFIG = {
     document.querySelector("[data-tabs-eyebrow]").textContent = CONFIG.tabsEyebrow;
     document.querySelector("[data-tabs-heading]").textContent = CONFIG.tabsHeading;
     document.querySelector("[data-approach-heading]").textContent = CONFIG.approachHeading;
+    document.querySelector("[data-testimonials-heading]").textContent = CONFIG.testimonialsHeading;
+    document.querySelector("[data-faq-heading]").textContent = CONFIG.faqHeading;
     document.querySelector("[data-contact-heading]").textContent = CONFIG.contactHeading;
 
     const emailEl = document.querySelector("[data-email]");
@@ -156,6 +197,45 @@ const CONFIG = {
         <div class="stat__label">${stat.label}</div>
       `;
       grid.appendChild(div);
+    });
+  }
+
+  function renderTestimonials() {
+    const grid = document.querySelector("[data-testimonials-grid]");
+    CONFIG.testimonials.forEach((t, index) => {
+      const card = document.createElement("div");
+      card.className = "testimonial reveal";
+      card.style.transitionDelay = `${index * 0.1}s`;
+      card.innerHTML = `
+        <p class="testimonial__quote">${t.quote}</p>
+        <p class="testimonial__byline"><strong>${t.name}</strong> — ${t.role}</p>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function renderFAQ() {
+    const list = document.querySelector("[data-faq-list]");
+    CONFIG.faq.forEach(item => {
+      const wrap = document.createElement("div");
+      wrap.className = "faq-item reveal";
+      wrap.innerHTML = `
+        <button type="button" class="faq-item__q" aria-expanded="false">
+          <span>${item.question}</span>
+          <span class="faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-item__a-wrap">
+          <div class="faq-item__a-inner">
+            <p class="faq-item__a">${item.answer}</p>
+          </div>
+        </div>
+      `;
+      const btn = wrap.querySelector(".faq-item__q");
+      btn.addEventListener("click", () => {
+        const open = wrap.classList.toggle("is-open");
+        btn.setAttribute("aria-expanded", String(open));
+      });
+      list.appendChild(wrap);
     });
   }
 
@@ -288,6 +368,8 @@ const CONFIG = {
   renderTabs();
   renderSteps();
   renderStats();
+  renderTestimonials();
+  renderFAQ();
   wireScrollProgress();
   wireParallax();
   wireReveals();
