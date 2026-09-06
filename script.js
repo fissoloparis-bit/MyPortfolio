@@ -28,14 +28,14 @@ const CONFIG = {
     },
     {
       label: "Quality & compliance",
-      metricValue: "60%+",
+      metricValue: "80%+",
       metricLabel: "NPS / NSS, hit monthly",
       title: "Meeting the metrics that matter, consistently",
-      body: "Consistently achieved 60% NPS and NSS scores on a monthly basis, meeting company-set performance metrics while ensuring team productivity and high-quality service delivery."
+      body: "Consistently achieved 80% NPS and NSS scores on a monthly basis, meeting company-set performance metrics while ensuring team productivity and high-quality service delivery."
     },
     {
       label: "Systems & tools",
-      metricValue: "CRM",
+      metricValue: "Tools and Products",
       metricLabel: "platforms used daily",
       title: "Fluent in the tools support teams run on",
       body: "Salesforce, Zendesk, HubSpot CRM, Avaya, and Cisco Finesse for daily operations, plus CRM-based systems for accurate back-office records of client-acquired products."
