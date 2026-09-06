@@ -38,7 +38,7 @@ const CONFIG = {
       metricValue: "Tools and Products",
       metricLabel: "platforms used daily",
       title: "Fluent in the tools support teams run on",
-      body: "Salesforce, Zendesk, HubSpot CRM, Avaya, and Cisco Finesse for daily operations, plus CRM-based systems for accurate back-office records of client-acquired products."
+      body: "Google Docs, Sheets, Drive, Calendar,Salesforce, Zendesk, HubSpot CRM, Avaya, and Cisco Finesse for daily operations, plus CRM-based systems for accurate back-office records of client-acquired products."
     }
   ],
 
