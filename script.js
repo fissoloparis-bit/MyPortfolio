@@ -77,7 +77,7 @@ const CONFIG = {
     { value: 10, suffix: "", label: "specialists directed" },
     { value: 60, suffix: "%+", label: "monthly NPS / NSS" },
     { value: 100, suffix: "%", label: "attendance record" },
-    { value: 13, suffix: "+ mo", label: "on each account" }
+    { value: 13, suffix: "+ mo", label: "overall experience" }
   ],
 
   credentialsHeading: "Education & certifications.",
