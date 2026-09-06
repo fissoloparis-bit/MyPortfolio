@@ -5,7 +5,7 @@ const CONFIG = {
   name: "Rhel Bencent Ruaya",
 
   headline: "Where thoughts become actions.",
-  sub: "A tech-minded operations specialist dedicated to streamlining workflows, leading high-performing teams, and turning high-volume customer interactions into reliable results.",
+  sub: "A results-driven operations and digital specialist with hands-on experience managing high-volume Telco and Financial accounts in the BPO industry — built on scorecard adherence, quality assurance, and a 100% attendance record.",
   heroCta: "See how I work",
 
   tabsEyebrow: "What I bring",
@@ -14,62 +14,92 @@ const CONFIG = {
     {
       label: "Team leadership",
       metricValue: "10",
-      metricLabel: "people on the team I led",
+      metricLabel: "technical support specialists directed",
       title: "Leading a team through high-volume, high-stakes work",
-      body: "Managed a team of 10 handling technical support across mobile, internet, TV, and landline concerns — coaching day to day and keeping quality steady even during peak volume."
+      body: "Directed a team of 10 technical support specialists, overseeing resolution of customer concerns across mobile, internet, TV, and landline services while maintaining top-tier product expertise."
     },
     {
-      label: "Customer experience",
+      label: "Financial & banking",
+      metricValue: "Keybank",
+      metricLabel: "account handled with discretion",
+      title: "Handling sensitive financial data with care",
+      body: "Manage sensitive client financial data and banking transactions with precision and discretion, resolving daily concerns across online banking and digital platforms to protect client trust."
+    },
+    {
+      label: "Quality & compliance",
       metricValue: "60%+",
       metricLabel: "NPS / NSS, hit monthly",
-      title: "Turning support interactions into loyalty",
-      body: "Hit 60%+ NPS and NSS scores monthly against company-set metrics — built on consistency, not one good week."
-    },
-    {
-      label: "Trust & accuracy",
-      metricValue: "1:1",
-      metricLabel: "client funds handled with care",
-      title: "Handling sensitive client information carefully",
-      body: "Worked directly with client funds, banking details, and digital banking concerns, where accuracy and discretion aren't optional."
+      title: "Meeting the metrics that matter, consistently",
+      body: "Consistently achieved 60% NPS and NSS scores on a monthly basis, meeting company-set performance metrics while ensuring team productivity and high-quality service delivery."
     },
     {
       label: "Systems & tools",
       metricValue: "CRM",
-      metricLabel: "tools used daily",
-      title: "Keeping the back office as sharp as the front line",
-      body: "Used CRM-style tools to manage back-office details and follow through with clients on the products they'd acquired, resolving issues end to end."
+      metricLabel: "platforms used daily",
+      title: "Fluent in the tools support teams run on",
+      body: "Salesforce, Zendesk, HubSpot CRM, Avaya, and Cisco Finesse for daily operations, plus CRM-based systems for accurate back-office records of client-acquired products."
     }
   ],
 
   approachHeading: "How I approach the work.",
   steps: [
     { title: "Listen first", body: "Get close to the workflow and the people in it before changing anything — most problems are visible once you actually look." },
-    { title: "Streamline", body: "Rebuild the process so the team can move faster without cutting corners, and make sure it's simple enough to stick." },
-    { title: "Deliver, consistently", body: "Track the numbers, coach the team, and keep results steady month over month — not just in the weeks someone's watching." }
+    { title: "Follow the scorecard", body: "Treat KPI and scorecard adherence as the baseline, not the ceiling — CSAT, FCR, and AHT all tell you something different." },
+    { title: "Deliver, consistently", body: "Keep results steady month over month — a 100% attendance record and repeat 60%+ NPS/NSS scores aren't accidents." }
+  ],
+
+  experienceHeading: "Where I've worked.",
+  experience: [
+    {
+      role: "Customer Service Representative — Xfinity account",
+      company: "Concentrix, Cebu Exchange, Cebu",
+      dates: "September 2026",
+      bullets: [
+        "Directed a team of 10 technical support specialists, overseeing resolution of customer concerns across mobile, internet, TV, and landline services.",
+        "Consistently achieved 60% NPS and NSS scores on a monthly basis, meeting company-set performance metrics.",
+        "Leveraged CRM-based systems to maintain accurate back-office records of client-acquired products."
+      ]
+    },
+    {
+      role: "Customer Service Representative — Keybank account",
+      company: "Concentrix, Mactan Newtown",
+      dates: "April 2026 – Present",
+      bullets: [
+        "Manage sensitive client financial data and banking transactions with precision and discretion.",
+        "Resolve daily concerns across online banking and digital platforms to ensure client trust and satisfaction.",
+        "Achieve key performance metrics and scorecard targets consistently."
+      ]
+    }
   ],
 
   stats: [
-    { value: 10, suffix: "", label: "team members led" },
+    { value: 10, suffix: "", label: "specialists directed" },
     { value: 60, suffix: "%+", label: "monthly NPS / NSS" },
-    { value: 100, suffix: "%", label: "accuracy on client fund handling" }
+    { value: 100, suffix: "%", label: "attendance record" },
+    { value: 13, suffix: "+ mo", label: "on each account" }
   ],
 
-  testimonialsHeading: "What people say.",
-  testimonials: [
+  credentialsHeading: "Education & certifications.",
+  credentials: [
     {
-      quote: "She kept the floor calm during our busiest quarter. NPS didn't just hold, it climbed.",
-      name: "Priya N.",
-      role: "Support Operations Manager"
+      tag: "In progress",
+      title: "BS Hospitality Management",
+      meta: "University of Cebu Lapu-Lapu Mandaue — 2026–Present"
     },
     {
-      quote: "The kind of lead who fixes the process, not just the ticket in front of her.",
-      name: "Marcus T.",
-      role: "Team Lead, Billing"
+      tag: "2 years completed",
+      title: "BS Computer Engineering",
+      meta: "University of Cebu Lapu-Lapu Mandaue — 60+ units"
     },
     {
-      quote: "Clients trusted her with account details because she never treated it as routine.",
-      name: "Elena R.",
-      role: "Client Services Director"
+      tag: "1 year completed",
+      title: "BS Information Technology",
+      meta: "University of Cebu Lapu-Lapu Mandaue — 30+ units"
+    },
+    {
+      tag: "Certification",
+      title: "Google Analytics Certified",
+      meta: ""
     }
   ],
 
@@ -77,7 +107,7 @@ const CONFIG = {
   faq: [
     {
       question: "What kind of teams do you work best with?",
-      answer: "Support and operations teams that handle a high volume of customer contact — where consistency matters as much as speed."
+      answer: "Telco and financial-account support teams that handle a high volume of customer contact — where scorecard adherence and consistency matter as much as speed."
     },
     {
       question: "Are you open to remote roles?",
@@ -89,7 +119,7 @@ const CONFIG = {
     },
     {
       question: "How do you handle sensitive client data?",
-      answer: "Carefully, and by the book — treating every account like it's the only one, not one of thousands."
+      answer: "Carefully, and by the book — I've managed banking transactions and client financial data directly, where discretion isn't optional."
     }
   ],
 
@@ -116,7 +146,8 @@ const CONFIG = {
     document.querySelector("[data-tabs-eyebrow]").textContent = CONFIG.tabsEyebrow;
     document.querySelector("[data-tabs-heading]").textContent = CONFIG.tabsHeading;
     document.querySelector("[data-approach-heading]").textContent = CONFIG.approachHeading;
-    document.querySelector("[data-testimonials-heading]").textContent = CONFIG.testimonialsHeading;
+    document.querySelector("[data-experience-heading]").textContent = CONFIG.experienceHeading;
+    document.querySelector("[data-credentials-heading]").textContent = CONFIG.credentialsHeading;
     document.querySelector("[data-faq-heading]").textContent = CONFIG.faqHeading;
     document.querySelector("[data-contact-heading]").textContent = CONFIG.contactHeading;
 
@@ -186,6 +217,41 @@ const CONFIG = {
     });
   }
 
+  function renderExperience() {
+    const list = document.querySelector("[data-experience-list]");
+    CONFIG.experience.forEach((job, index) => {
+      const item = document.createElement("div");
+      item.className = "experience__item reveal";
+      item.style.transitionDelay = `${index * 0.1}s`;
+      item.innerHTML = `
+        <div class="experience__top">
+          <span class="experience__role">${job.role}</span>
+          <span class="experience__dates">${job.dates}</span>
+        </div>
+        <div class="experience__company">${job.company}</div>
+        <ul class="experience__bullets">
+          ${job.bullets.map(b => `<li>${b}</li>`).join("")}
+        </ul>
+      `;
+      list.appendChild(item);
+    });
+  }
+
+  function renderCredentials() {
+    const grid = document.querySelector("[data-credentials-grid]");
+    CONFIG.credentials.forEach((c, index) => {
+      const card = document.createElement("div");
+      card.className = "credential reveal";
+      card.style.transitionDelay = `${index * 0.1}s`;
+      card.innerHTML = `
+        ${c.tag ? `<span class="credential__tag">${c.tag}</span>` : ""}
+        <p class="credential__title">${c.title}</p>
+        ${c.meta ? `<p class="credential__meta">${c.meta}</p>` : ""}
+      `;
+      grid.appendChild(card);
+    });
+  }
+
   function renderStats() {
     const grid = document.querySelector("[data-stats]");
     CONFIG.stats.forEach((stat, index) => {
@@ -197,20 +263,6 @@ const CONFIG = {
         <div class="stat__label">${stat.label}</div>
       `;
       grid.appendChild(div);
-    });
-  }
-
-  function renderTestimonials() {
-    const grid = document.querySelector("[data-testimonials-grid]");
-    CONFIG.testimonials.forEach((t, index) => {
-      const card = document.createElement("div");
-      card.className = "testimonial reveal";
-      card.style.transitionDelay = `${index * 0.1}s`;
-      card.innerHTML = `
-        <p class="testimonial__quote">${t.quote}</p>
-        <p class="testimonial__byline"><strong>${t.name}</strong> — ${t.role}</p>
-      `;
-      grid.appendChild(card);
     });
   }
 
@@ -347,7 +399,7 @@ const CONFIG = {
   /* --- 3D tilt on testimonial cards --- */
   function wireCardTilt() {
     if (window.matchMedia("(pointer: coarse)").matches) return;
-    document.querySelectorAll(".testimonial").forEach(card => {
+    document.querySelectorAll(".credential").forEach(card => {
       card.addEventListener("mousemove", e => {
         const rect = card.getBoundingClientRect();
         const px = (e.clientX - rect.left) / rect.width - 0.5;
@@ -432,8 +484,9 @@ const CONFIG = {
   fillStaticText();
   renderTabs();
   renderSteps();
+  renderExperience();
   renderStats();
-  renderTestimonials();
+  renderCredentials();
   renderFAQ();
   wireScrollProgress();
   wireParallax();
