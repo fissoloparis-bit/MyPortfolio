@@ -12,6 +12,13 @@
 </head>
 <body>
 
+  <div class="fabric-bg" aria-hidden="true">
+    <div class="fabric-bg__sheen fabric-bg__sheen--1"></div>
+    <div class="fabric-bg__sheen fabric-bg__sheen--2"></div>
+    <div class="fabric-bg__sheen fabric-bg__sheen--3"></div>
+    <div class="fabric-bg__grain"></div>
+  </div>
+
   <div class="scroll-progress" data-scroll-progress></div>
 
   <header class="site-header" data-header>
@@ -56,8 +63,16 @@
     </section>
 
     <section class="tabs" id="about">
-      <p class="eyebrow-plain reveal" data-tabs-eyebrow></p>
-      <h2 class="section-heading reveal" data-tabs-heading></h2>
+      <div class="about-intro">
+        <div class="about-intro__text">
+          <p class="eyebrow-plain reveal" data-tabs-eyebrow></p>
+          <h2 class="section-heading reveal" data-tabs-heading></h2>
+          <p class="about-intro__blurb reveal" data-about-blurb></p>
+        </div>
+        <div class="about-intro__photo reveal" data-about-photo>
+          <img class="about-intro__img" src="images/profile.png" alt="" data-profile-img>
+        </div>
+      </div>
 
       <div class="tabs__nav" data-tabs-nav></div>
 
