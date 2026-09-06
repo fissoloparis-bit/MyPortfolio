@@ -10,6 +10,7 @@ const CONFIG = {
 
   tabsEyebrow: "What I bring",
   tabsHeading: "A few different strengths, all pointed at the same result.",
+  aboutBlurb: "Based in Cebu, Philippines — I work in the BPO industry as a Customer Service Representative handling telco and financial accounts, currently on the Keybank account at Concentrix.",
   tabs: [
     {
       label: "Team leadership",
@@ -145,6 +146,8 @@ const CONFIG = {
 
     document.querySelector("[data-tabs-eyebrow]").textContent = CONFIG.tabsEyebrow;
     document.querySelector("[data-tabs-heading]").textContent = CONFIG.tabsHeading;
+    document.querySelector("[data-about-blurb]").textContent = CONFIG.aboutBlurb;
+    document.querySelector("[data-profile-img]").alt = CONFIG.name;
     document.querySelector("[data-approach-heading]").textContent = CONFIG.approachHeading;
     document.querySelector("[data-experience-heading]").textContent = CONFIG.experienceHeading;
     document.querySelector("[data-credentials-heading]").textContent = CONFIG.credentialsHeading;
@@ -452,6 +455,21 @@ const CONFIG = {
     update();
   }
 
+  /* --- subtle parallax on the about photo as you scroll to it --- */
+  function wireAboutPhotoParallax() {
+    const photo = document.querySelector("[data-about-photo]");
+    const img = document.querySelector("[data-profile-img]");
+    if (!photo || !img) return;
+    function update() {
+      const rect = photo.getBoundingClientRect();
+      const center = rect.top + rect.height / 2 - window.innerHeight / 2;
+      const progress = Math.max(Math.min(center / window.innerHeight, 1), -1);
+      img.style.transform = `translateY(${progress * -14}px)`;
+    }
+    document.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+
   /* --- mobile menu --- */
   function wireMobileMenu() {
     const toggle = document.querySelector("[data-menu-toggle]");
@@ -496,5 +514,6 @@ const CONFIG = {
   wireCardTilt();
   wireCustomCursor();
   wireHeroScrollFade();
+  wireAboutPhotoParallax();
   wireMobileMenu();
 })();
