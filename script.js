@@ -2,7 +2,7 @@
    EDIT EVERYTHING IN THIS CONFIG OBJECT TO MAKE THE SITE YOURS.
    ================================================================ */
 const CONFIG = {
-  name: "Your Name",
+  name: "Rhel Bencent Ruaya",
 
   headline: "Where thoughts become actions.",
   sub: "A tech-minded operations specialist dedicated to streamlining workflows, leading high-performing teams, and turning high-volume customer interactions into reliable results.",
@@ -94,10 +94,10 @@ const CONFIG = {
   ],
 
   contactHeading: "Let's talk.",
-  email: "hello@example.com",
+  email: "ruayarhel@gmail.com",
   socials: [
-    { label: "LinkedIn", url: "https://linkedin.com" },
-    { label: "Resume", url: "#" }
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/rhelruaya/" },
+    { label: "Resume", url: "https://drive.google.com/file/d/1w1VhU9XRQZhMFnvIyMJTM_Ebx-Y5nbUi/view?usp=drive_link" }
   ]
 };
 
