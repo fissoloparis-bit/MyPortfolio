@@ -28,17 +28,17 @@ const CONFIG = {
     },
     {
       label: "Quality & compliance",
-      metricValue: "80%+",
+      metricValue: "60%+",
       metricLabel: "NPS / NSS, hit monthly",
       title: "Meeting the metrics that matter, consistently",
-      body: "Consistently achieved 80% NPS and NSS scores on a monthly basis, meeting company-set performance metrics while ensuring team productivity and high-quality service delivery."
+      body: "Consistently achieved 60% NPS and NSS scores on a monthly basis, meeting company-set performance metrics while ensuring team productivity and high-quality service delivery."
     },
     {
       label: "Systems & tools",
-      metricValue: "Tools and Products",
+      metricValue: "CRM",
       metricLabel: "platforms used daily",
       title: "Fluent in the tools support teams run on",
-      body: "Google Docs, Sheets, Drive, Calendar,Salesforce, Zendesk, HubSpot CRM, Avaya, and Cisco Finesse for daily operations, plus CRM-based systems for accurate back-office records of client-acquired products."
+      body: "Salesforce, Zendesk, HubSpot CRM, Avaya, and Cisco Finesse for daily operations, plus CRM-based systems for accurate back-office records of client-acquired products."
     }
   ],
 
@@ -75,9 +75,9 @@ const CONFIG = {
 
   stats: [
     { value: 10, suffix: "", label: "specialists directed" },
-    { value: 80, suffix: "%+", label: "monthly NPS / NSS" },
+    { value: 60, suffix: "%+", label: "monthly NPS / NSS" },
     { value: 100, suffix: "%", label: "attendance record" },
-    { value: 13, suffix: "+ mo", label: "overall experience" }
+    { value: 13, suffix: "+ mo", label: "on each account" }
   ],
 
   credentialsHeading: "Education & certifications.",
