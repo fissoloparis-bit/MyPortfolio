@@ -17,7 +17,14 @@ const CONFIG = {
       metricValue: "10",
       metricLabel: "technical support specialists directed",
       title: "Leading a team through high-volume, high-stakes work",
-      body: "Directed a team of 10 technical support specialists, overseeing resolution of customer concerns across mobile, internet, TV, and landline services while maintaining top-tier product expertise."
+      body: "Directed a team of 10 technical support specialists, coaching day to day and maintaining top-tier product expertise and service standards across the floor."
+    },
+    {
+      label: "Telco support",
+      metricValue: "Xfinity",
+      metricLabel: "account supported",
+      title: "Supporting telco customers across every channel",
+      body: "Resolved customer concerns across mobile, internet, TV, and landline services on the Xfinity account, meeting company-set performance metrics while keeping service delivery consistent."
     },
     {
       label: "Financial & banking",
