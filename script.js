@@ -17,35 +17,70 @@ const CONFIG = {
       metricValue: "10",
       metricLabel: "technical support specialists directed",
       title: "Leading a team through high-volume, high-stakes work",
-      body: "Directed a team of 10 technical support specialists, coaching day to day and maintaining top-tier product expertise and service standards across the floor."
+      body: "Directed a team of 10 technical support specialists, coaching day to day and maintaining top-tier product expertise and service standards across the floor.",
+      icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="100" cy="46" r="15" fill="currentColor" stroke="none"/>
+        <circle cx="46" cy="140" r="15" fill="currentColor" stroke="none" opacity="0.55"/>
+        <circle cx="154" cy="140" r="15" fill="currentColor" stroke="none" opacity="0.55"/>
+        <line x1="100" y1="61" x2="53" y2="127"/>
+        <line x1="100" y1="61" x2="147" y2="127"/>
+        <line x1="61" y1="140" x2="139" y2="140"/>
+      </svg>`
     },
     {
       label: "Telco support",
       metricValue: "Xfinity",
       metricLabel: "account supported",
       title: "Supporting telco customers across every channel",
-      body: "Resolved customer concerns across mobile, internet, TV, and landline services on the Xfinity account, meeting company-set performance metrics while keeping service delivery consistent."
+      body: "Resolved customer concerns across mobile, internet, TV, and landline services on the Xfinity account, meeting company-set performance metrics while keeping service delivery consistent.",
+      icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M85 122 L100 62 L115 122 Z" fill="currentColor" stroke="none" opacity="0.85"/>
+        <line x1="100" y1="122" x2="100" y2="168"/>
+        <path d="M68 92 A46 46 0 0 1 132 92" opacity="0.75"/>
+        <path d="M52 74 A76 76 0 0 1 148 74" opacity="0.5"/>
+        <path d="M36 56 A106 106 0 0 1 164 56" opacity="0.3"/>
+      </svg>`
     },
     {
       label: "Financial & banking",
       metricValue: "Keybank",
       metricLabel: "account handled with discretion",
       title: "Handling sensitive financial data with care",
-      body: "Manage sensitive client financial data and banking transactions with precision and discretion, resolving daily concerns across online banking and digital platforms to protect client trust."
+      body: "Manage sensitive client financial data and banking transactions with precision and discretion, resolving daily concerns across online banking and digital platforms to protect client trust.",
+      icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M100 30 L162 56 V98 C162 138 136 164 100 176 C64 164 38 138 38 98 V56 Z"/>
+        <path d="M78 100 L94 116 L124 82" opacity="0.85"/>
+      </svg>`
     },
     {
       label: "Quality & compliance",
       metricValue: "60%+",
       metricLabel: "NPS / NSS, hit monthly",
       title: "Meeting the metrics that matter, consistently",
-      body: "Consistently achieved 60% NPS and NSS scores on a monthly basis, meeting company-set performance metrics while ensuring team productivity and high-quality service delivery."
+      body: "Consistently achieved 60% NPS and NSS scores on a monthly basis, meeting company-set performance metrics while ensuring team productivity and high-quality service delivery.",
+      icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="100" cy="88" r="48"/>
+        <path d="M78 88 L94 104 L124 72" opacity="0.9"/>
+        <path d="M74 128 L58 174 L100 152 L142 174 L126 128" opacity="0.6"/>
+      </svg>`
     },
     {
       label: "Systems & tools",
       metricValue: "CRM",
       metricLabel: "platforms used daily",
       title: "Fluent in the tools support teams run on",
-      body: "Salesforce, Zendesk, HubSpot CRM, Avaya, and Cisco Finesse for daily operations, plus CRM-based systems for accurate back-office records of client-acquired products."
+      body: "Salesforce, Zendesk, HubSpot CRM, Avaya, and Cisco Finesse for daily operations, plus CRM-based systems for accurate back-office records of client-acquired products.",
+      icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="36" y="36" width="34" height="34" rx="6" opacity="0.8"/>
+        <rect x="130" y="36" width="34" height="34" rx="6" opacity="0.8"/>
+        <rect x="36" y="130" width="34" height="34" rx="6" opacity="0.8"/>
+        <rect x="130" y="130" width="34" height="34" rx="6" opacity="0.8"/>
+        <line x1="70" y1="53" x2="130" y2="53" opacity="0.5"/>
+        <line x1="53" y1="70" x2="53" y2="130" opacity="0.5"/>
+        <line x1="147" y1="70" x2="147" y2="130" opacity="0.5"/>
+        <line x1="70" y1="147" x2="130" y2="147" opacity="0.5"/>
+        <circle cx="100" cy="100" r="12" fill="currentColor" stroke="none"/>
+      </svg>`
     }
   ],
 
@@ -188,6 +223,7 @@ const CONFIG = {
     function paint(index) {
       const tab = CONFIG.tabs[index];
       visual.innerHTML = `
+        <div class="tabs__visual-art">${tab.icon}</div>
         <div class="tabs__visual-card">
           <div class="tabs__visual-metric">${tab.metricValue}</div>
           <div>${tab.metricLabel}</div>
