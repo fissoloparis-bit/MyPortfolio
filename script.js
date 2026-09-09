@@ -150,15 +150,15 @@ const CONFIG = {
   faq: [
     {
       question: "What kind of teams do you work best with?",
-      answer: "Telco and financial-account support teams that handle a high volume of customer contact — where scorecard adherence and consistency matter as much as speed."
+      answer: "I work best with fast-paced, growth-oriented remote teams that value clear processes, accountability, and strong operational standards."
     },
     {
       question: "Are you open to remote roles?",
       answer: "Yes — remote, hybrid, or on-site all work, depending on the team and the role."
     },
     {
-      question: "What's your approach to underperforming metrics?",
-      answer: "Start with the workflow, not the person. Most low scores trace back to a process gap that coaching alone won't fix."
+      question: "Tell me about yourself and why you are transitioning to the VA industry.",
+      answer: "I have over two years of BPO experience as a Customer Support & Administrative Specialist with a 100% attendance record. I want to combine my background in customer resolution, back-office administration, and CRMs like Salesforce and Zendesk to deliver seamless support to remote clients."
     },
     {
       question: "How do you handle sensitive client data?",
