@@ -69,7 +69,7 @@ const CONFIG = {
       metricValue: "CRM",
       metricLabel: "platforms used daily",
       title: "Fluent in the tools support teams run on",
-      body: "Salesforce, Zendesk, HubSpot CRM, Avaya, and Cisco Finesse for daily operations, plus CRM-based systems for accurate back-office records of client-acquired products.",
+      body: "Salesforce, Zendesk, HubSpot CRM, Google Workspace, and MS Office for daily operations, alongside Notion, Asana, Slack, and Calendly for document management, project tracking, and executive scheduling.",
       icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <rect x="36" y="36" width="34" height="34" rx="6" opacity="0.8"/>
         <rect x="130" y="36" width="34" height="34" rx="6" opacity="0.8"/>
