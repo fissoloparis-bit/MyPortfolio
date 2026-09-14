@@ -69,7 +69,7 @@ const CONFIG = {
       metricValue: "CRM",
       metricLabel: "platforms used daily",
       title: "Fluent in the tools support teams run on",
-      body: "Salesforce, Zendesk, HubSpot CRM, Google Workspace, and MS Office for daily operations, alongside Notion, Asana, Slack, and Calendly for document management, project tracking, and executive scheduling.",
+      body: "Salesforce, Zendesk, HubSpot CRM, Avaya, and Cisco Finesse for daily operations, plus CRM-based systems for accurate back-office records of client-acquired products.",
       icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <rect x="36" y="36" width="34" height="34" rx="6" opacity="0.8"/>
         <rect x="130" y="36" width="34" height="34" rx="6" opacity="0.8"/>
@@ -150,15 +150,15 @@ const CONFIG = {
   faq: [
     {
       question: "What kind of teams do you work best with?",
-      answer: "I work best with fast-paced, growth-oriented remote teams that value clear processes, accountability, and strong operational standards."
+      answer: "Telco and financial-account support teams that handle a high volume of customer contact — where scorecard adherence and consistency matter as much as speed."
     },
     {
       question: "Are you open to remote roles?",
       answer: "Yes — remote, hybrid, or on-site all work, depending on the team and the role."
     },
     {
-      question: "Tell me about yourself and why you are transitioning to the VA industry.",
-      answer: "I have over two years of BPO experience as a Customer Support & Administrative Specialist with a 100% attendance record. I want to combine my background in customer resolution, back-office administration, and CRMs like Salesforce and Zendesk to deliver seamless support to remote clients."
+      question: "What's your approach to underperforming metrics?",
+      answer: "Start with the workflow, not the person. Most low scores trace back to a process gap that coaching alone won't fix."
     },
     {
       question: "How do you handle sensitive client data?",
@@ -513,6 +513,34 @@ const CONFIG = {
     update();
   }
 
+  /* --- header nav highlights the section currently in view --- */
+  function wireScrollSpy() {
+    const navLinks = document.querySelectorAll(".site-header__nav a");
+    const map = {};
+    navLinks.forEach(link => {
+      const id = link.getAttribute("href").replace("#", "");
+      map[id] = link;
+    });
+    const sections = Object.keys(map)
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+    if (!sections.length) return;
+
+    const io = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(l => l.classList.remove("is-active"));
+            const active = map[entry.target.id];
+            if (active) active.classList.add("is-active");
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+    sections.forEach(s => io.observe(s));
+  }
+
   /* --- mobile menu --- */
   function wireMobileMenu() {
     const toggle = document.querySelector("[data-menu-toggle]");
@@ -558,5 +586,6 @@ const CONFIG = {
   wireCustomCursor();
   wireHeroScrollFade();
   wireAboutPhotoParallax();
+  wireScrollSpy();
   wireMobileMenu();
 })();
