@@ -179,7 +179,7 @@ const CONFIG = {
    ================================================================ */
 (function () {
   function fillStaticText() {
-    document.title = CONFIG.name;
+    document.title = `${CONFIG.name} — Operations & Customer Experience Specialist`;
     document.querySelectorAll("[data-name]").forEach(el => (el.textContent = CONFIG.name));
     document.querySelectorAll("[data-footer-name]").forEach(el => (el.textContent = CONFIG.name));
     document.querySelector("[data-headline]").textContent = CONFIG.headline;
