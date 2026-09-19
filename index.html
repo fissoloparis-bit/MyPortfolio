@@ -23,6 +23,28 @@
 <meta name="twitter:description" content="Customer Service Representative in the BPO industry, handling Telco and Financial accounts in Cebu, Philippines.">
 <meta name="twitter:image" content="images/og-image.jpg">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Rhel Bencent Ruaya",
+  "jobTitle": "Customer Service Representative",
+  "email": "mailto:ruayarhel@gmail.com",
+  "url": "https://linkedin.com/in/rhelruaya",
+  "sameAs": ["https://linkedin.com/in/rhelruaya"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Cebu",
+    "addressCountry": "PH"
+  },
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Concentrix"
+  },
+  "knowsAbout": ["Customer Service", "BPO Operations", "Telco Accounts", "Financial Accounts", "Quality Assurance"]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -74,6 +96,10 @@
         <div class="hero__grain"></div>
       </div>
       <div class="hero__content">
+        <p class="hero__status">
+          <span class="hero__status-dot" aria-hidden="true"></span>
+          <span data-status-text></span>
+        </p>
         <h1 class="hero__headline" data-headline></h1>
         <p class="hero__sub" data-sub></p>
         <a class="hero__cta btn-glow" href="#approach" data-cta></a>
@@ -128,11 +154,18 @@
 
     <section class="contact" id="contact">
       <h2 class="section-heading reveal" data-contact-heading></h2>
-      <a class="contact__email reveal" data-email href="#"></a>
+      <div class="contact__email-row reveal">
+        <a class="contact__email" data-email href="#"></a>
+        <button type="button" class="contact__copy" data-copy-email>Copy</button>
+      </div>
       <ul class="contact__socials reveal" data-socials></ul>
     </section>
 
   </main>
+
+  <button type="button" class="back-to-top" data-back-to-top aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
 
   <footer class="site-footer">
     <span data-footer-name></span>
