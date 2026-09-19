@@ -5,6 +5,7 @@ const CONFIG = {
   name: "Rhel Bencent Ruaya",
 
   headline: "Where thoughts become actions.",
+  availabilityStatus: "Open to work",
   sub: "A results-driven operations and digital specialist with hands-on experience managing high-volume Telco and Financial accounts in the BPO industry — built on scorecard adherence, quality assurance, and a 100% attendance record.",
   heroCta: "See how I work",
 
@@ -183,6 +184,7 @@ const CONFIG = {
     document.querySelectorAll("[data-name]").forEach(el => (el.textContent = CONFIG.name));
     document.querySelectorAll("[data-footer-name]").forEach(el => (el.textContent = CONFIG.name));
     document.querySelector("[data-headline]").textContent = CONFIG.headline;
+    document.querySelector("[data-status-text]").textContent = CONFIG.availabilityStatus;
     document.querySelector("[data-sub]").textContent = CONFIG.sub;
     document.querySelector("[data-cta]").textContent = CONFIG.heroCta;
 
@@ -541,6 +543,40 @@ const CONFIG = {
     sections.forEach(s => io.observe(s));
   }
 
+  /* --- copy email to clipboard --- */
+  function wireCopyEmail() {
+    const btn = document.querySelector("[data-copy-email]");
+    if (!btn) return;
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(CONFIG.email);
+        const original = btn.textContent;
+        btn.textContent = "Copied!";
+        btn.classList.add("is-copied");
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove("is-copied");
+        }, 1800);
+      } catch (e) {
+        // clipboard API unavailable — the email link itself still works
+      }
+    });
+  }
+
+  /* --- back to top --- */
+  function wireBackToTop() {
+    const btn = document.querySelector("[data-back-to-top]");
+    if (!btn) return;
+    function update() {
+      btn.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.8);
+    }
+    document.addEventListener("scroll", update, { passive: true });
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    update();
+  }
+
   /* --- mobile menu --- */
   function wireMobileMenu() {
     const toggle = document.querySelector("[data-menu-toggle]");
@@ -587,5 +623,7 @@ const CONFIG = {
   wireHeroScrollFade();
   wireAboutPhotoParallax();
   wireScrollSpy();
+  wireCopyEmail();
+  wireBackToTop();
   wireMobileMenu();
 })();
