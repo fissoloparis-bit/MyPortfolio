@@ -586,108 +586,29 @@ const CONFIG = {
     });
   }
 
-  /* --- command palette (Ctrl/Cmd+K quick nav) --- */
-  function wireCommandPalette() {
-    const trigger = document.querySelector("[data-cmdk-trigger]");
-    const overlay = document.querySelector("[data-cmdk]");
-    const input = document.querySelector("[data-cmdk-input]");
-    const list = document.querySelector("[data-cmdk-list]");
-    const kbd = document.querySelector("[data-cmdk-kbd]");
-    if (!trigger || !overlay || !input || !list || !kbd) return;
+  /* --- cursor sparkle trail, echoing the logo mark --- */
+  function wireCursorSparkles() {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
-    kbd.textContent = isMac ? "\u2318K" : "Ctrl K";
+    let lastSpawn = 0;
+    document.addEventListener("mousemove", e => {
+      const now = performance.now();
+      if (now - lastSpawn < 90) return;
+      lastSpawn = now;
 
-    const commands = [
-      { label: "About", hint: "Bio & background", go: "#about" },
-      { label: "Approach", hint: "How I work", go: "#approach" },
-      { label: "Experience", hint: "Job history", go: "#experience" },
-      { label: "Education & certifications", hint: "Credentials", go: "#credentials" },
-      { label: "FAQ", hint: "Common questions", go: "#faq" },
-      { label: "Contact", hint: "Get in touch", go: "#contact" },
-      {
-        label: "Copy email address",
-        hint: CONFIG.email,
-        run: () => document.querySelector("[data-copy-email]")?.click()
-      }
-    ];
+      const sparkle = document.createElement("div");
+      sparkle.className = "cursor-sparkle";
+      const jitterX = (Math.random() - 0.5) * 10;
+      const jitterY = (Math.random() - 0.5) * 10;
+      sparkle.style.left = `${e.clientX + jitterX}px`;
+      sparkle.style.top = `${e.clientY + jitterY}px`;
+      const scale = 0.7 + Math.random() * 0.6;
+      sparkle.style.transform = `translate(-50%, -50%) scale(${scale}) rotate(${Math.random() * 30 - 15}deg)`;
+      document.body.appendChild(sparkle);
 
-    let activeIndex = 0;
-    let filtered = commands;
-
-    function renderList() {
-      list.innerHTML = "";
-      if (!filtered.length) {
-        list.innerHTML = `<li class="cmdk__empty">No matches</li>`;
-        return;
-      }
-      filtered.forEach((cmd, i) => {
-        const li = document.createElement("li");
-        li.className = "cmdk__item" + (i === activeIndex ? " is-active" : "");
-        li.innerHTML = `<span class="cmdk__item-label">${cmd.label}</span><span class="cmdk__item-hint">${cmd.hint}</span>`;
-        li.addEventListener("mouseenter", () => { activeIndex = i; renderList(); });
-        li.addEventListener("click", () => runCommand(cmd));
-        list.appendChild(li);
-      });
-    }
-
-    function runCommand(cmd) {
-      if (!cmd) return;
-      if (cmd.go) document.querySelector(cmd.go)?.scrollIntoView({ behavior: "smooth" });
-      if (cmd.run) cmd.run();
-      close();
-    }
-
-    function filterCommands() {
-      const q = input.value.trim().toLowerCase();
-      filtered = q
-        ? commands.filter(c => c.label.toLowerCase().includes(q) || c.hint.toLowerCase().includes(q))
-        : commands;
-      activeIndex = 0;
-      renderList();
-    }
-
-    function open() {
-      overlay.hidden = false;
-      input.value = "";
-      filterCommands();
-      setTimeout(() => input.focus(), 10);
-      document.body.style.overflow = "hidden";
-    }
-    function close() {
-      overlay.hidden = true;
-      document.body.style.overflow = "";
-    }
-
-    trigger.addEventListener("click", open);
-    overlay.addEventListener("click", e => { if (e.target === overlay) close(); });
-
-    input.addEventListener("input", filterCommands);
-    input.addEventListener("keydown", e => {
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        activeIndex = Math.min(activeIndex + 1, filtered.length - 1);
-        renderList();
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        activeIndex = Math.max(activeIndex - 1, 0);
-        renderList();
-      } else if (e.key === "Enter") {
-        e.preventDefault();
-        runCommand(filtered[activeIndex]);
-      } else if (e.key === "Escape") {
-        close();
-      }
-    });
-
-    document.addEventListener("keydown", e => {
-      const key = e.key.toLowerCase();
-      if ((e.metaKey || e.ctrlKey) && key === "k") {
-        e.preventDefault();
-        overlay.hidden ? open() : close();
-      } else if (e.key === "Escape" && !overlay.hidden) {
-        close();
-      }
+      requestAnimationFrame(() => sparkle.classList.add("is-fading"));
+      setTimeout(() => sparkle.remove(), 750);
     });
   }
 
@@ -785,7 +706,7 @@ const CONFIG = {
   wireCopyEmail();
   wireBackToTop();
   wireScrollCue();
-  wireCommandPalette();
+  wireCursorSparkles();
   wireLocalTime();
   wireShare();
   wireMobileMenu();
