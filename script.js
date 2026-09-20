@@ -593,7 +593,7 @@ const CONFIG = {
     const input = document.querySelector("[data-cmdk-input]");
     const list = document.querySelector("[data-cmdk-list]");
     const kbd = document.querySelector("[data-cmdk-kbd]");
-    if (!trigger || !overlay || !input || !list) return;
+    if (!trigger || !overlay || !input || !list || !kbd) return;
 
     const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
     kbd.textContent = isMac ? "\u2318K" : "Ctrl K";
@@ -691,6 +691,51 @@ const CONFIG = {
     });
   }
 
+  /* --- live local time, shown in the footer --- */
+  function wireLocalTime() {
+    const el = document.querySelector("[data-local-time]");
+    if (!el) return;
+    function update() {
+      const time = new Intl.DateTimeFormat("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        timeZone: "Asia/Manila"
+      }).format(new Date());
+      el.textContent = `${time} in Cebu`;
+    }
+    update();
+    setInterval(update, 30000);
+  }
+
+  /* --- share this profile --- */
+  function wireShare() {
+    const btn = document.querySelector("[data-share]");
+    if (!btn) return;
+    btn.addEventListener("click", async () => {
+      const shareData = {
+        title: document.title,
+        text: `${CONFIG.name} — ${CONFIG.availabilityStatus}`,
+        url: window.location.href
+      };
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          await navigator.clipboard.writeText(shareData.url);
+          const original = btn.textContent;
+          btn.textContent = "Link copied!";
+          btn.classList.add("is-copied");
+          setTimeout(() => {
+            btn.textContent = original;
+            btn.classList.remove("is-copied");
+          }, 1800);
+        }
+      } catch (e) {
+        // user cancelled the share sheet, or clipboard unavailable — no action needed
+      }
+    });
+  }
+
   /* --- mobile menu --- */
   function wireMobileMenu() {
     const toggle = document.querySelector("[data-menu-toggle]");
@@ -741,5 +786,7 @@ const CONFIG = {
   wireBackToTop();
   wireScrollCue();
   wireCommandPalette();
+  wireLocalTime();
+  wireShare();
   wireMobileMenu();
 })();
