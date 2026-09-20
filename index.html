@@ -52,6 +52,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#top">Skip to content</a>
+
   <div class="fabric-bg" aria-hidden="true">
     <div class="fabric-bg__sheen fabric-bg__sheen--1"></div>
     <div class="fabric-bg__sheen fabric-bg__sheen--2"></div>
@@ -162,6 +164,7 @@
         <button type="button" class="contact__copy" data-copy-email>Copy</button>
       </div>
       <ul class="contact__socials reveal" data-socials></ul>
+      <button type="button" class="contact__share reveal" data-share>Share this profile</button>
     </section>
 
   </main>
@@ -183,7 +186,11 @@
   </div>
 
   <footer class="site-footer">
-    <span data-footer-name></span>
+    <span class="site-footer__left">
+      <span data-footer-name></span>
+      <span class="site-footer__sep" aria-hidden="true">·</span>
+      <span data-local-time></span>
+    </span>
     <span data-year></span>
   </footer>
 
