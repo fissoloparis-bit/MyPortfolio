@@ -1019,3 +1019,70 @@ h1, h2{ font-family: var(--display); margin: 0; }
 }
 .site-footer__left{ display: flex; align-items: center; gap: 0.6rem; }
 .site-footer__sep{ opacity: 0.5; }
+
+/* ============================================================
+   IMAGE FADE-IN ON LOAD
+   ============================================================ */
+img{
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+img.is-loaded{
+  opacity: 1;
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print{
+  .fabric-bg,
+  .scroll-progress,
+  .site-header,
+  .mobile-nav,
+  .back-to-top,
+  .skip-link,
+  .cursor-sparkle,
+  .hero__scroll-cue,
+  .hero__bg,
+  .contact__share,
+  .contact__copy{
+    display: none !important;
+  }
+  html, body{
+    background: #fff !important;
+    color: #111 !important;
+  }
+  * {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  .hero{
+    min-height: 0;
+    padding: 0 0 1.5rem;
+  }
+  .hero__content{ transform: none !important; opacity: 1 !important; }
+  .hero__headline, .hero__sub, .hero__status, .hero__cta{
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .hero__cta{ display: none; }
+  h1, h2, h3, .step__title, .experience__role, .credential__title{
+    color: #000 !important;
+  }
+  p, li, .section-heading, .stat__label, .experience__company, .credential__meta{
+    color: #333 !important;
+  }
+  a{ color: #000 !important; text-decoration: underline; }
+  .tabs__visual, .about-intro__photo{ display: none; }
+  .tabs__nav{ display: none; }
+  .tabs__panel{ display: block; }
+  section{
+    border-top: 1px solid #ccc !important;
+    padding: 1rem 0 !important;
+    page-break-inside: avoid;
+  }
+  .reveal{ opacity: 1 !important; transform: none !important; }
+}
