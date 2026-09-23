@@ -337,6 +337,22 @@ const CONFIG = {
       });
       list.appendChild(wrap);
     });
+
+    // arrow-key navigation between questions, Home/End to jump to first/last
+    const buttons = Array.from(list.querySelectorAll(".faq-item__q"));
+    buttons.forEach((btn, i) => {
+      btn.addEventListener("keydown", e => {
+        let target = null;
+        if (e.key === "ArrowDown") target = buttons[i + 1];
+        else if (e.key === "ArrowUp") target = buttons[i - 1];
+        else if (e.key === "Home") target = buttons[0];
+        else if (e.key === "End") target = buttons[buttons.length - 1];
+        if (target) {
+          e.preventDefault();
+          target.focus();
+        }
+      });
+    });
   }
 
   /* --- scroll progress bar --- */
@@ -657,6 +673,18 @@ const CONFIG = {
     });
   }
 
+  /* --- fade images in once they've actually loaded --- */
+  function wireImageFadeIn() {
+    document.querySelectorAll("img").forEach(img => {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add("is-loaded");
+      } else {
+        img.addEventListener("load", () => img.classList.add("is-loaded"), { once: true });
+        img.addEventListener("error", () => img.classList.add("is-loaded"), { once: true });
+      }
+    });
+  }
+
   /* --- mobile menu --- */
   function wireMobileMenu() {
     const toggle = document.querySelector("[data-menu-toggle]");
@@ -686,6 +714,19 @@ const CONFIG = {
     mq.addEventListener("change", e => { if (e.matches) setOpen(false); });
   }
 
+  /* --- a small hello for anyone who opens devtools --- */
+  function logConsoleGreeting() {
+    try {
+      console.log(
+        "%cHey, looking under the hood?%c\nI like that. If you're a developer, recruiter, or just curious — say hi: " + CONFIG.email,
+        "color:#EDEDEC; background:#0A0B0C; font-size:14px; font-weight:600; padding:6px 10px; border-radius:6px 6px 0 0;",
+        "color:#9A9C9F; font-size:12px; line-height:1.6;"
+      );
+    } catch (e) {
+      // console unavailable — nothing to do
+    }
+  }
+
   fillStaticText();
   renderTabs();
   renderSteps();
@@ -709,5 +750,7 @@ const CONFIG = {
   wireCursorSparkles();
   wireLocalTime();
   wireShare();
+  wireImageFadeIn();
   wireMobileMenu();
+  logConsoleGreeting();
 })();
