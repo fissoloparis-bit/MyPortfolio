@@ -169,9 +169,20 @@ const CONFIG = {
 
   contactHeading: "Let's talk.",
   email: "ruayarhel@gmail.com",
+  formEndpoint: "",
   socials: [
     { label: "LinkedIn", url: "https://www.linkedin.com/in/rhelruaya/" },
     { label: "Resume", url: "https://drive.google.com/file/d/1w1VhU9XRQZhMFnvIyMJTM_Ebx-Y5nbUi/view?usp=drive_link" }
+  ],
+
+  changelog: [
+    "Added a cursor sparkle trail that echoes the logo mark.",
+    "Print-friendly layout so the page comes out clean on paper or as a PDF.",
+    "Images now fade in once they've actually finished loading.",
+    "FAQ questions support full keyboard navigation (arrow keys, Home/End).",
+    "A small hello in the browser console for anyone who looks under the hood.",
+    "Live local time (Cebu) in the footer, plus one-click email copy and native sharing.",
+    "A status badge, scroll-triggered reveals, and custom tab illustrations throughout."
   ]
 };
 
@@ -685,6 +696,74 @@ const CONFIG = {
     });
   }
 
+  /* --- "What's new" changelog panel --- */
+  function renderChangelog() {
+    const list = document.querySelector("[data-changelog-list]");
+    if (!list) return;
+    CONFIG.changelog.forEach(entry => {
+      const li = document.createElement("li");
+      li.textContent = entry;
+      list.appendChild(li);
+    });
+  }
+
+  function wireChangelog() {
+    const trigger = document.querySelector("[data-changelog-trigger]");
+    const overlay = document.querySelector("[data-changelog]");
+    const closeBtn = document.querySelector("[data-changelog-close]");
+    if (!trigger || !overlay || !closeBtn) return;
+
+    function open() { overlay.hidden = false; }
+    function close() { overlay.hidden = true; }
+
+    trigger.addEventListener("click", open);
+    closeBtn.addEventListener("click", close);
+    overlay.addEventListener("click", e => { if (e.target === overlay) close(); });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && !overlay.hidden) close();
+    });
+  }
+
+  /* --- contact form (works if CONFIG.formEndpoint is set) --- */
+  function wireContactForm() {
+    const form = document.querySelector("[data-contact-form]");
+    const status = document.querySelector("[data-form-status]");
+    if (!form || !status) return;
+
+    if (!CONFIG.formEndpoint) {
+      form.remove();
+      return;
+    }
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const submitBtn = form.querySelector(".contact-form__submit");
+      submitBtn.disabled = true;
+      status.textContent = "Sending…";
+      status.className = "contact-form__status";
+
+      try {
+        const res = await fetch(CONFIG.formEndpoint, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form)
+        });
+        if (res.ok) {
+          status.textContent = "Message sent — thanks for reaching out!";
+          status.className = "contact-form__status is-success";
+          form.reset();
+        } else {
+          throw new Error("Request failed");
+        }
+      } catch (err) {
+        status.textContent = `Something went wrong — feel free to email me directly at ${CONFIG.email} instead.`;
+        status.className = "contact-form__status is-error";
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
+
   /* --- mobile menu --- */
   function wireMobileMenu() {
     const toggle = document.querySelector("[data-menu-toggle]");
@@ -734,6 +813,7 @@ const CONFIG = {
   renderStats();
   renderCredentials();
   renderFAQ();
+  renderChangelog();
   wireScrollProgress();
   wireParallax();
   wireReveals();
@@ -745,12 +825,14 @@ const CONFIG = {
   wireAboutPhotoParallax();
   wireScrollSpy();
   wireCopyEmail();
+  wireContactForm();
   wireBackToTop();
   wireScrollCue();
   wireCursorSparkles();
   wireLocalTime();
   wireShare();
   wireImageFadeIn();
+  wireChangelog();
   wireMobileMenu();
   logConsoleGreeting();
 })();
