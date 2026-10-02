@@ -12,6 +12,14 @@ const CONFIG = {
   tabsEyebrow: "What I bring",
   tabsHeading: "A few different strengths, all pointed at the same result.",
   aboutBlurb: "Based in Cebu, Philippines — I work in the BPO industry as a Customer Service Representative handling telco and financial accounts, currently on the Keybank account at Concentrix.",
+  rightNow: "Currently on the Keybank account, and pursuing a BS in Hospitality Management",
+
+  skills: [
+    "Customer Service", "BPO Operations", "Telco & Financial Accounts",
+    "KPI & Scorecard Adherence", "Quality Assurance", "De-escalation",
+    "Salesforce", "Zendesk", "HubSpot CRM", "Avaya", "Cisco Finesse",
+    "MS Office", "CSAT", "FCR", "AHT"
+  ],
   tabs: [
     {
       label: "Team leadership",
@@ -202,6 +210,7 @@ const CONFIG = {
     document.querySelector("[data-tabs-eyebrow]").textContent = CONFIG.tabsEyebrow;
     document.querySelector("[data-tabs-heading]").textContent = CONFIG.tabsHeading;
     document.querySelector("[data-about-blurb]").textContent = CONFIG.aboutBlurb;
+    document.querySelector("[data-right-now]").textContent = CONFIG.rightNow;
     document.querySelector("[data-profile-img]").alt = CONFIG.name;
     document.querySelector("[data-approach-heading]").textContent = CONFIG.approachHeading;
     document.querySelector("[data-experience-heading]").textContent = CONFIG.experienceHeading;
@@ -225,6 +234,19 @@ const CONFIG = {
       a.rel = "noopener";
       li.appendChild(a);
       socialsEl.appendChild(li);
+    });
+  }
+
+  function renderMarquee() {
+    const track = document.querySelector("[data-marquee-track]");
+    if (!track) return;
+    // duplicate the list once so the loop can scroll -50% seamlessly
+    const doubled = [...CONFIG.skills, ...CONFIG.skills];
+    doubled.forEach(skill => {
+      const item = document.createElement("div");
+      item.className = "marquee__item";
+      item.innerHTML = `${skill}<span aria-hidden="true">&#10022;</span>`;
+      track.appendChild(item);
     });
   }
 
@@ -807,6 +829,7 @@ const CONFIG = {
   }
 
   fillStaticText();
+  renderMarquee();
   renderTabs();
   renderSteps();
   renderExperience();
