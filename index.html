@@ -111,12 +111,20 @@
       </button>
     </section>
 
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" data-marquee-track></div>
+    </div>
+
     <section class="tabs" id="about">
       <div class="about-intro">
         <div class="about-intro__text">
           <p class="eyebrow-plain reveal" data-tabs-eyebrow></p>
           <h2 class="section-heading reveal" data-tabs-heading></h2>
           <p class="about-intro__blurb reveal" data-about-blurb></p>
+          <div class="right-now reveal">
+            <span class="right-now__dot" aria-hidden="true"></span>
+            <span data-right-now></span>
+          </div>
         </div>
         <div class="about-intro__photo reveal" data-about-photo>
           <img class="about-intro__img" src="images/profile.png" alt="" data-profile-img>
