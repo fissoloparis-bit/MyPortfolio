@@ -786,6 +786,47 @@ const CONFIG = {
     });
   }
 
+  /* --- time-of-day greeting based on Cebu local time --- */
+  function wireGreeting() {
+    const el = document.querySelector("[data-greeting]");
+    if (!el) return;
+    const hour = parseInt(
+      new Intl.DateTimeFormat("en-US", { hour: "numeric", hour12: false, timeZone: "Asia/Manila" }).format(new Date()),
+      10
+    );
+    let greeting = "Good evening";
+    if (hour < 12) greeting = "Good morning";
+    else if (hour < 18) greeting = "Good afternoon";
+    el.textContent = `${greeting} from Cebu`;
+  }
+
+  /* --- download a .vcf contact card --- */
+  function wireSaveContact() {
+    const btn = document.querySelector("[data-save-contact]");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      const vcard = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        `FN:${CONFIG.name}`,
+        "TITLE:Customer Service Representative",
+        `EMAIL;TYPE=INTERNET:${CONFIG.email}`,
+        `URL:${CONFIG.socials.find(s => s.label === "LinkedIn")?.url || ""}`,
+        "END:VCARD"
+      ].join("\r\n");
+
+      const blob = new Blob([vcard], { type: "text/vcard" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${CONFIG.name.toLowerCase().replace(/\s+/g, "-")}.vcf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+  }
+
   /* --- mobile menu --- */
   function wireMobileMenu() {
     const toggle = document.querySelector("[data-menu-toggle]");
@@ -854,6 +895,8 @@ const CONFIG = {
   wireCursorSparkles();
   wireLocalTime();
   wireShare();
+  wireGreeting();
+  wireSaveContact();
   wireImageFadeIn();
   wireChangelog();
   wireMobileMenu();
