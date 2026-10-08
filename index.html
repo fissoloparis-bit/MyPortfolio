@@ -98,6 +98,7 @@
         <div class="hero__grain"></div>
       </div>
       <div class="hero__content">
+        <p class="hero__greeting" data-greeting></p>
         <p class="hero__status">
           <span class="hero__status-dot" aria-hidden="true"></span>
           <span data-status-text></span>
@@ -192,7 +193,10 @@
         <button type="button" class="contact__copy" data-copy-email>Copy</button>
       </div>
       <ul class="contact__socials reveal" data-socials></ul>
-      <button type="button" class="contact__share reveal" data-share>Share this profile</button>
+      <div class="contact__actions reveal">
+        <button type="button" class="contact__share" data-share>Share this profile</button>
+        <button type="button" class="contact__share" data-save-contact>Save contact (.vcf)</button>
+      </div>
     </section>
 
   </main>
