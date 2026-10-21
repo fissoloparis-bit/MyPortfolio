@@ -183,7 +183,36 @@ const CONFIG = {
     { label: "Resume", url: "https://drive.google.com/file/d/1w1VhU9XRQZhMFnvIyMJTM_Ebx-Y5nbUi/view?usp=drive_link" }
   ],
 
+  projectsHeading: "Practice project: a small CRM, built to learn.",
+  practice: {
+    intro: "A self-directed exercise, not client work. After handling real customer accounts in the BPO industry, I built this small browser-based case tracker with made-up customers to practice organizing records and follow-ups the way a remote support or operations role would. Try it: move a case forward and watch the log and counts update.",
+    hint: "Click \"Move to\" on any case to advance it through the workflow. Everything here is fictional and resets when you reload.",
+    statuses: [
+      { id: "new", label: "New", rule: "Log it with a clear summary and set a first follow-up date." },
+      { id: "in-progress", label: "In progress", rule: "One owner, one next step, written down." },
+      { id: "awaiting", label: "Awaiting customer", rule: "Waiting on a reply. A follow-up date keeps it from going quiet." },
+      { id: "resolved", label: "Resolved", rule: "Confirmed with the customer, then closed with a final note." }
+    ],
+    cases: [
+      { id: "CS-1001", customer: "Harbor Lane Bakery", issue: "Duplicate charge on the monthly invoice", priority: "High", status: "in-progress", followUpDays: -1 },
+      { id: "CS-1002", customer: "Pinewood Dental", issue: "Cannot log in after password reset", priority: "High", status: "new", followUpDays: 0 },
+      { id: "CS-1003", customer: "Alder & Finch Studio", issue: "Request to update billing contact", priority: "Low", status: "awaiting", followUpDays: 2 },
+      { id: "CS-1004", customer: "Maple Ridge Fitness", issue: "Service outage reported on Saturday", priority: "Medium", status: "in-progress", followUpDays: 1 },
+      { id: "CS-1005", customer: "Bluebird Print Shop", issue: "Question about plan upgrade options", priority: "Low", status: "new", followUpDays: 3 },
+      { id: "CS-1006", customer: "Cobalt Logistics", issue: "Missing confirmation email for an order", priority: "Medium", status: "awaiting", followUpDays: -2 },
+      { id: "CS-1007", customer: "Juniper Home Care", issue: "Address change not showing on account", priority: "Low", status: "resolved", followUpDays: null }
+    ],
+    notes: [
+      "One record per case, with one clear status and one owner. No duplicates, no orphaned entries.",
+      "Write the summary so a teammate could pick it up cold: what happened, what was tried, what comes next.",
+      "Every status change gets a dated note, so the history explains itself.",
+      "Every open case carries a follow-up date, and anything overdue is flagged at the start of the day.",
+      "Confirm the fix with the customer before marking a case Resolved."
+    ]
+  },
+
   changelog: [
+    "New practice project: an interactive sample case tracker with a follow-up workflow (fictional data, clearly labeled).",
     "Added a cursor sparkle trail that echoes the logo mark.",
     "Print-friendly layout so the page comes out clean on paper or as a PDF.",
     "Images now fade in once they've actually finished loading.",
@@ -827,6 +856,178 @@ const CONFIG = {
     });
   }
 
+  /* --- practice project: sample CRM case tracker (fictional data) --- */
+  function wirePracticeProject() {
+    const cfg = CONFIG.practice;
+    const rowsEl = document.querySelector("[data-practice-rows]");
+    const summaryEl = document.querySelector("[data-practice-summary]");
+    const stagesEl = document.querySelector("[data-practice-stages]");
+    const logEl = document.querySelector("[data-practice-log]");
+    const notesEl = document.querySelector("[data-practice-notes]");
+    const resetBtn = document.querySelector("[data-practice-reset]");
+    if (!cfg || !rowsEl || !summaryEl || !stagesEl || !logEl || !notesEl || !resetBtn) return;
+
+    document.querySelector("[data-projects-heading]").textContent = CONFIG.projectsHeading;
+    document.querySelector("[data-practice-intro]").textContent = cfg.intro;
+    document.querySelector("[data-practice-hint]").textContent = cfg.hint;
+
+    const order = cfg.statuses.map(s => s.id);
+    const label = id => cfg.statuses.find(s => s.id === id).label;
+    const fmt = new Intl.DateTimeFormat("en-US", { weekday: "short", month: "short", day: "numeric" });
+    const timeFmt = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" });
+
+    function startOfToday() {
+      const d = new Date();
+      d.setHours(0, 0, 0, 0);
+      return d;
+    }
+    function addDays(days) {
+      const d = startOfToday();
+      d.setDate(d.getDate() + days);
+      return d;
+    }
+
+    let cases = [];
+    let filter = null;
+    let log = [];
+
+    function load() {
+      cases = cfg.cases.map(c => ({
+        ...c,
+        followUp: c.followUpDays === null ? null : addDays(c.followUpDays)
+      }));
+      filter = null;
+      log = [];
+    }
+
+    function isOverdue(c) {
+      return c.status !== "resolved" && c.followUp && c.followUp < startOfToday();
+    }
+
+    function nextStatus(c) {
+      if (c.status === "resolved") return "in-progress"; // reopen
+      return order[order.indexOf(c.status) + 1];
+    }
+
+    function advance(id) {
+      const c = cases.find(x => x.id === id);
+      if (!c) return;
+      const reopened = c.status === "resolved";
+      c.status = nextStatus(c);
+      if (c.status === "resolved") {
+        c.followUp = null;
+      } else {
+        c.followUp = addDays(c.status === "awaiting" ? 3 : 1);
+      }
+      const note = c.status === "resolved"
+        ? `${c.id} marked Resolved after confirming with the customer`
+        : `${c.id} ${reopened ? "reopened and moved" : "moved"} to ${label(c.status)}, follow-up set for ${fmt.format(c.followUp)}`;
+      log.unshift({ time: timeFmt.format(new Date()), note });
+      log = log.slice(0, 6);
+      render();
+      document.querySelector(`[data-advance="${id}"]`)?.focus();
+    }
+
+    function visibleCases() {
+      let list = cases.slice();
+      if (filter === "overdue") list = list.filter(isOverdue);
+      else if (filter) list = list.filter(c => c.status === filter);
+      // open cases first, soonest follow-up first, resolved last
+      return list.sort((a, b) => {
+        if ((a.status === "resolved") !== (b.status === "resolved")) return a.status === "resolved" ? 1 : -1;
+        const ad = a.followUp ? a.followUp.getTime() : Infinity;
+        const bd = b.followUp ? b.followUp.getTime() : Infinity;
+        return ad - bd;
+      });
+    }
+
+    function renderSummary() {
+      const chips = [{ id: null, label: "All", count: cases.length }];
+      cfg.statuses.forEach(s => chips.push({ id: s.id, label: s.label, count: cases.filter(c => c.status === s.id).length }));
+      chips.push({ id: "overdue", label: "Overdue", count: cases.filter(isOverdue).length });
+      summaryEl.innerHTML = "";
+      chips.forEach(chip => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "practice__chip" + (filter === chip.id ? " is-active" : "") + (chip.id === "overdue" && chip.count ? " is-alert" : "");
+        b.setAttribute("aria-pressed", String(filter === chip.id));
+        b.innerHTML = `<span>${chip.label}</span><strong>${chip.count}</strong>`;
+        b.addEventListener("click", () => {
+          filter = filter === chip.id ? null : chip.id;
+          render();
+        });
+        summaryEl.appendChild(b);
+      });
+    }
+
+    function renderRows() {
+      const list = visibleCases();
+      rowsEl.innerHTML = "";
+      if (!list.length) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td colspan="7" class="practice__empty">No cases match this filter.</td>`;
+        rowsEl.appendChild(tr);
+        return;
+      }
+      list.forEach(c => {
+        const overdue = isOverdue(c);
+        const tr = document.createElement("tr");
+        const nextLabel = c.status === "resolved" ? "Reopen" : `Move to ${label(nextStatus(c))}`;
+        tr.innerHTML = `
+          <td data-label="Case" class="practice__id">${c.id}</td>
+          <td data-label="Customer">${c.customer}</td>
+          <td data-label="Issue" class="practice__issue">${c.issue}</td>
+          <td data-label="Priority"><span class="practice__priority practice__priority--${c.priority.toLowerCase()}">${c.priority}</span></td>
+          <td data-label="Status"><span class="practice__status practice__status--${c.status}">${label(c.status)}</span></td>
+          <td data-label="Follow-up" class="${overdue ? "is-overdue" : ""}">${c.followUp ? fmt.format(c.followUp) + (overdue ? " (overdue)" : "") : "&mdash;"}</td>
+          <td data-label=""><button type="button" class="practice__action" data-advance="${c.id}" aria-label="${c.id}: ${nextLabel}">${nextLabel}</button></td>
+        `;
+        tr.querySelector("[data-advance]").addEventListener("click", () => advance(c.id));
+        rowsEl.appendChild(tr);
+      });
+    }
+
+    function renderLog() {
+      logEl.innerHTML = "";
+      if (!log.length) {
+        logEl.innerHTML = `<li class="practice__log-empty">No changes yet. Move a case to see it recorded here.</li>`;
+        return;
+      }
+      log.forEach(entry => {
+        const li = document.createElement("li");
+        li.innerHTML = `<time>${entry.time}</time><span>${entry.note}</span>`;
+        logEl.appendChild(li);
+      });
+    }
+
+    function render() {
+      renderSummary();
+      renderRows();
+      renderLog();
+    }
+
+    // static parts: workflow stages and organization notes
+    cfg.statuses.forEach((s, i) => {
+      const li = document.createElement("li");
+      li.className = "practice__stage";
+      li.innerHTML = `<span class="practice__stage-n">${i + 1}</span><div><strong>${s.label}</strong><p>${s.rule}</p></div>`;
+      stagesEl.appendChild(li);
+    });
+    cfg.notes.forEach(n => {
+      const li = document.createElement("li");
+      li.textContent = n;
+      notesEl.appendChild(li);
+    });
+
+    resetBtn.addEventListener("click", () => {
+      load();
+      render();
+    });
+
+    load();
+    render();
+  }
+
   /* --- mobile menu --- */
   function wireMobileMenu() {
     const toggle = document.querySelector("[data-menu-toggle]");
@@ -856,6 +1057,24 @@ const CONFIG = {
     mq.addEventListener("change", e => { if (e.matches) setOpen(false); });
   }
 
+  /* --- FAQ structured data, built from CONFIG.faq so it never drifts --- */
+  function injectFaqSchema() {
+    if (!CONFIG.faq || !CONFIG.faq.length) return;
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: CONFIG.faq.map(item => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer }
+      }))
+    };
+    const tag = document.createElement("script");
+    tag.type = "application/ld+json";
+    tag.textContent = JSON.stringify(schema);
+    document.head.appendChild(tag);
+  }
+
   /* --- a small hello for anyone who opens devtools --- */
   function logConsoleGreeting() {
     try {
@@ -876,6 +1095,7 @@ const CONFIG = {
   renderExperience();
   renderStats();
   renderCredentials();
+  wirePracticeProject();
   renderFAQ();
   renderChangelog();
   wireScrollProgress();
@@ -900,5 +1120,6 @@ const CONFIG = {
   wireImageFadeIn();
   wireChangelog();
   wireMobileMenu();
+  injectFaqSchema();
   logConsoleGreeting();
 })();
