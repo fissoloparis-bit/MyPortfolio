@@ -1,1125 +1,1571 @@
-/* ================================================================
-   EDIT EVERYTHING IN THIS CONFIG OBJECT TO MAKE THE SITE YOURS.
-   ================================================================ */
-const CONFIG = {
-  name: "Rhel Bencent Ruaya",
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --bg: #0A0B0C;
+  --bg-raised: #131416;
+  --ink: #EDEDEC;
+  --muted: #9A9C9F;
+  --line: rgba(255,255,255,0.10);
+  --pill: #F2EFE9;
+  --pill-ink: #14151599;
+  --pill-ink-solid: #17181A;
+  --teal: #4C6B6E;
 
-  headline: "Where thoughts become actions.",
-  availabilityStatus: "Open to work",
-  sub: "A results-driven operations and digital specialist with hands-on experience managing high-volume Telco and Financial accounts in the BPO industry — built on scorecard adherence, quality assurance, and a 100% attendance record.",
-  heroCta: "See how I work",
+  --display: 'Sora', system-ui, sans-serif;
+  --body: 'Inter', system-ui, sans-serif;
 
-  tabsEyebrow: "What I bring",
-  tabsHeading: "A few different strengths, all pointed at the same result.",
-  aboutBlurb: "Based in Cebu, Philippines — I work in the BPO industry as a Customer Service Representative handling telco and financial accounts, currently on the Keybank account at Concentrix.",
-  rightNow: "Currently finding another job and pursuing a BS in Hospitality Management",
+  --max: 1180px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+}
 
-  skills: [
-    "Customer Service", "BPO Operations", "Telco & Financial Accounts",
-    "KPI & Scorecard Adherence", "Quality Assurance", "De-escalation",
-    "Salesforce", "Zendesk", "HubSpot CRM", "Avaya", "Cisco Finesse",
-    "MS Office", "CSAT", "FCR", "AHT"
-  ],
-  tabs: [
-    {
-      label: "Team leadership",
-      metricValue: "10",
-      metricLabel: "technical support specialists directed",
-      title: "Leading a team through high-volume, high-stakes work",
-      body: "Directed a team of 10 technical support specialists, coaching day to day and maintaining top-tier product expertise and service standards across the floor.",
-      icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="100" cy="46" r="15" fill="currentColor" stroke="none"/>
-        <circle cx="46" cy="140" r="15" fill="currentColor" stroke="none" opacity="0.55"/>
-        <circle cx="154" cy="140" r="15" fill="currentColor" stroke="none" opacity="0.55"/>
-        <line x1="100" y1="61" x2="53" y2="127"/>
-        <line x1="100" y1="61" x2="147" y2="127"/>
-        <line x1="61" y1="140" x2="139" y2="140"/>
-      </svg>`
-    },
-    {
-      label: "Telco support",
-      metricValue: "Xfinity",
-      metricLabel: "account supported",
-      title: "Supporting telco customers across every channel",
-      body: "Resolved customer concerns across mobile, internet, TV, and landline services on the Xfinity account, meeting company-set performance metrics while keeping service delivery consistent.",
-      icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M85 122 L100 62 L115 122 Z" fill="currentColor" stroke="none" opacity="0.85"/>
-        <line x1="100" y1="122" x2="100" y2="168"/>
-        <path d="M68 92 A46 46 0 0 1 132 92" opacity="0.75"/>
-        <path d="M52 74 A76 76 0 0 1 148 74" opacity="0.5"/>
-        <path d="M36 56 A106 106 0 0 1 164 56" opacity="0.3"/>
-      </svg>`
-    },
-    {
-      label: "Financial & banking",
-      metricValue: "Keybank",
-      metricLabel: "account handled with discretion",
-      title: "Handling sensitive financial data with care",
-      body: "Manage sensitive client financial data and banking transactions with precision and discretion, resolving daily concerns across online banking and digital platforms to protect client trust.",
-      icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M100 30 L162 56 V98 C162 138 136 164 100 176 C64 164 38 138 38 98 V56 Z"/>
-        <path d="M78 100 L94 116 L124 82" opacity="0.85"/>
-      </svg>`
-    },
-    {
-      label: "Quality & compliance",
-      metricValue: "60%+",
-      metricLabel: "NPS / NSS, hit monthly",
-      title: "Meeting the metrics that matter, consistently",
-      body: "Consistently achieved 60% NPS and NSS scores on a monthly basis, meeting company-set performance metrics while ensuring team productivity and high-quality service delivery.",
-      icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="100" cy="88" r="48"/>
-        <path d="M78 88 L94 104 L124 72" opacity="0.9"/>
-        <path d="M74 128 L58 174 L100 152 L142 174 L126 128" opacity="0.6"/>
-      </svg>`
-    },
-    {
-      label: "Systems & tools",
-      metricValue: "CRM",
-      metricLabel: "platforms used daily",
-      title: "Fluent in the tools support teams run on",
-      body: "Salesforce, Zendesk, HubSpot CRM, Avaya, and Cisco Finesse for daily operations, plus CRM-based systems for accurate back-office records of client-acquired products.",
-      icon: `<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="36" y="36" width="34" height="34" rx="6" opacity="0.8"/>
-        <rect x="130" y="36" width="34" height="34" rx="6" opacity="0.8"/>
-        <rect x="36" y="130" width="34" height="34" rx="6" opacity="0.8"/>
-        <rect x="130" y="130" width="34" height="34" rx="6" opacity="0.8"/>
-        <line x1="70" y1="53" x2="130" y2="53" opacity="0.5"/>
-        <line x1="53" y1="70" x2="53" y2="130" opacity="0.5"/>
-        <line x1="147" y1="70" x2="147" y2="130" opacity="0.5"/>
-        <line x1="70" y1="147" x2="130" y2="147" opacity="0.5"/>
-        <circle cx="100" cy="100" r="12" fill="currentColor" stroke="none"/>
-      </svg>`
-    }
-  ],
+*, *::before, *::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *, *::before, *::after{ animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
 
-  approachHeading: "How I approach the work.",
-  steps: [
-    { title: "Listen first", body: "Get close to the workflow and the people in it before changing anything — most problems are visible once you actually look." },
-    { title: "Follow the scorecard", body: "Treat KPI and scorecard adherence as the baseline, not the ceiling — CSAT, FCR, and AHT all tell you something different." },
-    { title: "Deliver, consistently", body: "Keep results steady month over month — a 100% attendance record and repeat 60%+ NPS/NSS scores aren't accidents." }
-  ],
+html{
+  background: #0A0B0C;
+}
+body{
+  margin: 0;
+  cursor: default;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-  experienceHeading: "Where I've worked.",
-  experience: [
-    {
-      role: "Customer Service Representative — Xfinity account",
-      company: "Concentrix, Cebu Exchange, Cebu",
-      dates: "September 2026",
-      bullets: [
-        "Directed a team of 10 technical support specialists, overseeing resolution of customer concerns across mobile, internet, TV, and landline services.",
-        "Consistently achieved 60% NPS and NSS scores on a monthly basis, meeting company-set performance metrics.",
-        "Leveraged CRM-based systems to maintain accurate back-office records of client-acquired products."
-      ]
-    },
-    {
-      role: "Customer Service Representative — Keybank account",
-      company: "Concentrix, Mactan Newtown",
-      dates: "April 2026 – Present",
-      bullets: [
-        "Manage sensitive client financial data and banking transactions with precision and discretion.",
-        "Resolve daily concerns across online banking and digital platforms to ensure client trust and satisfaction.",
-        "Achieve key performance metrics and scorecard targets consistently."
-      ]
-    }
-  ],
+/* ============================================================
+   FABRIC BACKGROUND
+   fixed behind the whole page — slow, drifting light across a
+   near-black base, meant to feel like dark fabric catching light
+   ============================================================ */
+.fabric-bg{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: #0A0B0C;
+}
+.fabric-bg__sheen{
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  mix-blend-mode: screen;
+  background: linear-gradient(120deg, transparent 30%, rgba(210,208,200,0.5) 50%, transparent 70%);
+  will-change: transform;
+}
+.fabric-bg__sheen--1{
+  width: 150%; height: 55%;
+  top: -15%; left: -25%;
+  opacity: 0.16;
+  animation: fabric-drift-1 42s ease-in-out infinite alternate;
+}
+.fabric-bg__sheen--2{
+  width: 130%; height: 50%;
+  top: 35%; left: -15%;
+  opacity: 0.1;
+  animation: fabric-drift-2 55s ease-in-out infinite alternate;
+}
+.fabric-bg__sheen--3{
+  width: 160%; height: 60%;
+  top: 68%; left: -30%;
+  opacity: 0.09;
+  animation: fabric-drift-3 63s ease-in-out infinite alternate;
+}
+@keyframes fabric-drift-1{
+  0%{ transform: translate(0, 0) rotate(-10deg); }
+  100%{ transform: translate(7%, 5%) rotate(-4deg); }
+}
+@keyframes fabric-drift-2{
+  0%{ transform: translate(0, 0) rotate(9deg); }
+  100%{ transform: translate(-6%, -7%) rotate(15deg); }
+}
+@keyframes fabric-drift-3{
+  0%{ transform: translate(0, 0) rotate(-7deg); }
+  100%{ transform: translate(5%, -4%) rotate(-1deg); }
+}
+.fabric-bg__grain{
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-  stats: [
-    { value: 10, suffix: "", label: "specialists directed" },
-    { value: 60, suffix: "%+", label: "monthly NPS / NSS" },
-    { value: 100, suffix: "%", label: "attendance record" },
-    { value: 13, suffix: "+ mo", label: "on each account" }
-  ],
+a{ color: inherit; }
+:focus-visible{ outline: 2px solid var(--pill); outline-offset: 3px; }
+h1, h2{ font-family: var(--display); margin: 0; }
 
-  credentialsHeading: "Education & certifications.",
-  credentials: [
-    {
-      tag: "In progress",
-      title: "BS Hospitality Management",
-      meta: "University of Cebu Lapu-Lapu Mandaue — 2026–Present"
-    },
-    {
-      tag: "2 years completed",
-      title: "BS Computer Engineering",
-      meta: "University of Cebu Lapu-Lapu Mandaue — 60+ units"
-    },
-    {
-      tag: "1 year completed",
-      title: "BS Information Technology",
-      meta: "University of Cebu Lapu-Lapu Mandaue — 30+ units"
-    },
-    {
-      tag: "Certification",
-      title: "Google Analytics Certified",
-      meta: ""
-    }
-  ],
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+.cursor-dot{
+  position: fixed;
+  top: 0; left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ink);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 200;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease;
+  will-change: transform;
+}
+.cursor-dot.is-active{ width: 46px; height: 46px; }
+@media (pointer: coarse), (prefers-reduced-motion: reduce){
+  .cursor-dot{ display: none; }
+}
 
-  faqHeading: "A few questions people ask.",
-  faq: [
-    {
-      question: "What kind of teams do you work best with?",
-      answer: "Telco and financial-account support teams that handle a high volume of customer contact — where scorecard adherence and consistency matter as much as speed."
-    },
-    {
-      question: "Are you open to remote roles?",
-      answer: "Yes — remote, hybrid, or on-site all work, depending on the team and the role."
-    },
-    {
-      question: "What's your approach to underperforming metrics?",
-      answer: "Start with the workflow, not the person. Most low scores trace back to a process gap that coaching alone won't fix."
-    },
-    {
-      question: "How do you handle sensitive client data?",
-      answer: "Carefully, and by the book — I've managed banking transactions and client financial data directly, where discretion isn't optional."
-    }
-  ],
+/* ============================================================
+   SKIP LINK (accessibility)
+   ============================================================ */
+.skip-link{
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 300;
+  background: var(--pill);
+  color: var(--pill-ink-solid);
+  padding: 0.85rem 1.25rem;
+  border-radius: 0 0 10px 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+.skip-link:focus{
+  left: 0;
+}
 
-  contactHeading: "Let's talk.",
-  email: "ruayarhel@gmail.com",
-  formEndpoint: "",
-  socials: [
-    { label: "LinkedIn", url: "https://www.linkedin.com/in/rhelruaya/" },
-    { label: "Resume", url: "https://drive.google.com/file/d/1w1VhU9XRQZhMFnvIyMJTM_Ebx-Y5nbUi/view?usp=drive_link" }
-  ],
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+.scroll-progress{
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--pill);
+  z-index: 100;
+  transition: width 0.05s linear;
+}
 
-  projectsHeading: "Practice project: a small CRM, built to learn.",
-  practice: {
-    intro: "A self-directed exercise, not client work. After handling real customer accounts in the BPO industry, I built this small browser-based case tracker with made-up customers to practice organizing records and follow-ups the way a remote support or operations role would. Try it: move a case forward and watch the log and counts update.",
-    hint: "Click \"Move to\" on any case to advance it through the workflow. Everything here is fictional and resets when you reload.",
-    statuses: [
-      { id: "new", label: "New", rule: "Log it with a clear summary and set a first follow-up date." },
-      { id: "in-progress", label: "In progress", rule: "One owner, one next step, written down." },
-      { id: "awaiting", label: "Awaiting customer", rule: "Waiting on a reply. A follow-up date keeps it from going quiet." },
-      { id: "resolved", label: "Resolved", rule: "Confirmed with the customer, then closed with a final note." }
-    ],
-    cases: [
-      { id: "CS-1001", customer: "Harbor Lane Bakery", issue: "Duplicate charge on the monthly invoice", priority: "High", status: "in-progress", followUpDays: -1 },
-      { id: "CS-1002", customer: "Pinewood Dental", issue: "Cannot log in after password reset", priority: "High", status: "new", followUpDays: 0 },
-      { id: "CS-1003", customer: "Alder & Finch Studio", issue: "Request to update billing contact", priority: "Low", status: "awaiting", followUpDays: 2 },
-      { id: "CS-1004", customer: "Maple Ridge Fitness", issue: "Service outage reported on Saturday", priority: "Medium", status: "in-progress", followUpDays: 1 },
-      { id: "CS-1005", customer: "Bluebird Print Shop", issue: "Question about plan upgrade options", priority: "Low", status: "new", followUpDays: 3 },
-      { id: "CS-1006", customer: "Cobalt Logistics", issue: "Missing confirmation email for an order", priority: "Medium", status: "awaiting", followUpDays: -2 },
-      { id: "CS-1007", customer: "Juniper Home Care", issue: "Address change not showing on account", priority: "Low", status: "resolved", followUpDays: null }
-    ],
-    notes: [
-      "One record per case, with one clear status and one owner. No duplicates, no orphaned entries.",
-      "Write the summary so a teammate could pick it up cold: what happened, what was tried, what comes next.",
-      "Every status change gets a dated note, so the history explains itself.",
-      "Every open case carries a follow-up date, and anything overdue is flagged at the start of the day.",
-      "Confirm the fix with the customer before marking a case Resolved."
-    ]
-  },
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.1rem var(--gutter);
+  background: rgba(10,11,12,0.35);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.site-header.is-scrolled{
+  background: rgba(10,11,12,0.72);
+  border-bottom-color: var(--line);
+}
+.site-header__logo{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-family: var(--display);
+  font-weight: 600;
+  color: var(--ink);
+}
+.site-header__mark{ display: inline-flex; color: var(--ink); }
+.site-header__nav{ display: flex; gap: 2rem; }
+.site-header__nav a{
+  position: relative;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.92rem;
+  padding-bottom: 4px;
+  transition: color 0.2s ease;
+}
+.site-header__nav a::after{
+  content: '';
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--ink);
+  transition: right 0.3s ease;
+}
+.site-header__nav a:hover{ color: var(--ink); }
+.site-header__nav a:hover::after{ right: 0; }
+.site-header__nav a.is-active{ color: var(--ink); }
+.site-header__nav a.is-active::after{ right: 0; }
+.site-header__cta{
+  position: relative;
+  overflow: hidden;
+  background: var(--pill);
+  color: var(--pill-ink-solid);
+  text-decoration: none;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: transform 0.2s ease;
+}
+.site-header__cta:hover{ transform: translateY(-1px); }
 
-  changelog: [
-    "New practice project: an interactive sample case tracker with a follow-up workflow (fictional data, clearly labeled).",
-    "Added a cursor sparkle trail that echoes the logo mark.",
-    "Print-friendly layout so the page comes out clean on paper or as a PDF.",
-    "Images now fade in once they've actually finished loading.",
-    "FAQ questions support full keyboard navigation (arrow keys, Home/End).",
-    "A small hello in the browser console for anyone who looks under the hood.",
-    "Live local time (Cebu) in the footer, plus one-click email copy and native sharing.",
-    "A status badge, scroll-triggered reveals, and custom tab illustrations throughout."
-  ]
-};
+/* cursor-tracking glow — applied to all pill CTAs */
+.btn-glow{ position: relative; overflow: hidden; }
+.btn-glow::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(90px circle at var(--x, 50%) var(--y, 50%), rgba(20,21,21,0.22), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.btn-glow:hover::after{ opacity: 1; }
 
-/* ================================================================
-   Rendering & behavior — you shouldn't need to edit below this line.
-   ================================================================ */
-(function () {
-  function fillStaticText() {
-    document.title = `${CONFIG.name} — Operations & Customer Experience Specialist`;
-    document.querySelectorAll("[data-name]").forEach(el => (el.textContent = CONFIG.name));
-    document.querySelectorAll("[data-footer-name]").forEach(el => (el.textContent = CONFIG.name));
-    document.querySelector("[data-headline]").textContent = CONFIG.headline;
-    document.querySelector("[data-status-text]").textContent = CONFIG.availabilityStatus;
-    document.querySelector("[data-sub]").textContent = CONFIG.sub;
-    document.querySelector("[data-cta]").textContent = CONFIG.heroCta;
+/* hamburger toggle — hidden on desktop, shown on small screens */
+.site-header__toggle{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.site-header__toggle span{
+  display: block;
+  height: 1.5px;
+  width: 18px;
+  margin: 0 auto;
+  background: var(--ink);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.site-header__toggle[aria-expanded="true"] span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
+.site-header__toggle[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
+.site-header__toggle[aria-expanded="true"] span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
 
-    document.querySelector("[data-tabs-eyebrow]").textContent = CONFIG.tabsEyebrow;
-    document.querySelector("[data-tabs-heading]").textContent = CONFIG.tabsHeading;
-    document.querySelector("[data-about-blurb]").textContent = CONFIG.aboutBlurb;
-    document.querySelector("[data-right-now]").textContent = CONFIG.rightNow;
-    document.querySelector("[data-profile-img]").alt = CONFIG.name;
-    document.querySelector("[data-approach-heading]").textContent = CONFIG.approachHeading;
-    document.querySelector("[data-experience-heading]").textContent = CONFIG.experienceHeading;
-    document.querySelector("[data-credentials-heading]").textContent = CONFIG.credentialsHeading;
-    document.querySelector("[data-faq-heading]").textContent = CONFIG.faqHeading;
-    document.querySelector("[data-contact-heading]").textContent = CONFIG.contactHeading;
+/* full-screen mobile nav panel */
+.mobile-nav{
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.75rem;
+  padding: 2rem var(--gutter);
+  background: rgba(10,11,12,0.98);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.mobile-nav.is-open{
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.mobile-nav a{
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+.mobile-nav__cta{
+  margin-top: 0.5rem;
+  background: var(--pill);
+  color: var(--pill-ink-solid) !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
 
-    const emailEl = document.querySelector("[data-email]");
-    emailEl.textContent = CONFIG.email;
-    emailEl.href = `mailto:${CONFIG.email}`;
+@media (max-width: 760px){
+  .site-header__nav,
+  .site-header__cta{ display: none; }
+  .site-header__toggle{ display: flex; }
+}
+@media (min-width: 761px){
+  .mobile-nav{ display: none; }
+}
 
-    document.querySelector("[data-year]").textContent = new Date().getFullYear();
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position: relative;
+  min-height: 92vh;
+  min-height: 92svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(4.5rem, 14vw, 6rem) var(--gutter) clamp(3rem, 8vw, 4rem);
+  text-align: center;
+}
+.hero__bg{
+  position: absolute;
+  inset: -10% -10%;
+  background:
+    radial-gradient(60% 50% at 30% 20%, rgba(76,107,110,0.55), transparent 60%),
+    radial-gradient(70% 60% at 75% 75%, rgba(20,25,27,0.9), transparent 60%),
+    linear-gradient(160deg, #23292b 0%, #101213 55%, #0A0B0C 100%);
+  will-change: transform;
+}
+.hero__streak{
+  position: absolute;
+  top: 8%;
+  left: 40%;
+  width: 60%;
+  height: 70%;
+  background: linear-gradient(120deg, transparent 40%, rgba(220,235,230,0.5) 48%, transparent 56%);
+  filter: blur(18px);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+.hero__grain{
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero__content{
+  position: relative;
+  z-index: 2;
+  max-width: 46rem;
+  will-change: transform, opacity;
+}
+.hero__greeting{
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise-in 0.9s cubic-bezier(.2,.8,.2,1) 0s forwards;
+}
+.hero__status{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise-in 0.9s cubic-bezier(.2,.8,.2,1) 0.05s forwards;
+}
+.hero__status-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5FBF77;
+  animation: status-pulse 2s ease-out infinite;
+}
+@keyframes status-pulse{
+  0%{ box-shadow: 0 0 0 0 rgba(95,191,119,0.5); }
+  70%{ box-shadow: 0 0 0 8px rgba(95,191,119,0); }
+  100%{ box-shadow: 0 0 0 0 rgba(95,191,119,0); }
+}
+.hero__headline{
+  font-size: clamp(2.2rem, 6vw, 4.4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise-in 0.9s cubic-bezier(.2,.8,.2,1) 0.1s forwards;
+}
+.hero__sub{
+  margin: 1.5rem auto 0;
+  max-width: 42rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise-in 0.9s cubic-bezier(.2,.8,.2,1) 0.3s forwards;
+}
+.hero__cta{
+  display: inline-block;
+  margin-top: 2.2rem;
+  background: var(--pill);
+  color: var(--pill-ink-solid);
+  text-decoration: none;
+  padding: 0.85rem 1.8rem;
+  border-radius: 999px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise-in 0.9s cubic-bezier(.2,.8,.2,1) 0.5s forwards;
+  transition: transform 0.2s ease;
+}
+.hero__cta:hover{ transform: translateY(-2px); }
+.hero__cta{ will-change: transform; }
+@keyframes rise-in{ to{ opacity: 1; transform: translateY(0); } }
 
-    const socialsEl = document.querySelector("[data-socials]");
-    CONFIG.socials.forEach(s => {
-      const li = document.createElement("li");
-      const a = document.createElement("a");
-      a.href = s.url;
-      a.textContent = s.label;
-      a.target = "_blank";
-      a.rel = "noopener";
-      li.appendChild(a);
-      socialsEl.appendChild(li);
-    });
+/* ============================================================
+   SHARED SECTION TYPE
+   ============================================================ */
+.eyebrow-plain{
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0 0 0.75rem;
+}
+.section-heading{
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  max-width: 30ch;
+}
+
+/* ============================================================
+   TABS SECTION
+   ============================================================ */
+.tabs{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 6rem) var(--gutter);
+}
+
+.about-intro{
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: clamp(2rem, 6vw, 4rem);
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
+}
+.about-intro__blurb{
+  margin-top: 1.25rem;
+  color: var(--muted);
+  max-width: 46ch;
+  font-size: 1.02rem;
+}
+.about-intro__photo{
+  justify-self: end;
+  width: 100%;
+  max-width: 300px;
+}
+.about-intro__img{
+  display: block;
+  width: 100%;
+  height: auto;
+  will-change: transform;
+}
+@media (max-width: 700px){
+  .about-intro{
+    grid-template-columns: 1fr;
+    align-items: start;
   }
-
-  function renderMarquee() {
-    const track = document.querySelector("[data-marquee-track]");
-    if (!track) return;
-    // duplicate the list once so the loop can scroll -50% seamlessly
-    const doubled = [...CONFIG.skills, ...CONFIG.skills];
-    doubled.forEach(skill => {
-      const item = document.createElement("div");
-      item.className = "marquee__item";
-      item.innerHTML = `${skill}<span aria-hidden="true">&#10022;</span>`;
-      track.appendChild(item);
-    });
+  .about-intro__photo{
+    justify-self: center;
+    max-width: 220px;
+    order: -1;
   }
+}
+.tabs__nav{
+  display: flex;
+  gap: 1.75rem;
+  margin: 2.5rem 0 2.5rem;
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+}
+.tabs__nav button{
+  background: none;
+  border: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0 0 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+}
+.tabs__nav button::after{
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.tabs__nav button.is-active{ color: var(--ink); }
+.tabs__nav button.is-active::after{ transform: scaleX(1); }
 
-  function renderTabs() {
-    const nav = document.querySelector("[data-tabs-nav]");
-    const visual = document.querySelector("[data-tabs-visual]");
-    const copy = document.querySelector("[data-tabs-copy]");
+.tabs__panel{
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+@media (max-width: 760px){
+  .tabs__panel{ grid-template-columns: 1fr; }
+}
+.tabs__visual{
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: 18px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  padding: clamp(1rem, 3vw, 1.75rem);
+  display: flex;
+  align-items: flex-end;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.tabs__visual:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.25);
+}
+.tabs__visual-art{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12% 15% 22%;
+  color: var(--muted);
+  animation: fade-swap 0.4s ease;
+}
+.tabs__visual-art svg{
+  width: 100%;
+  height: 100%;
+}
+.tabs__visual-card{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  animation: fade-swap 0.4s ease;
+}
+.tabs__visual-metric{
+  font-family: var(--display);
+  font-size: 1.8rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+.tabs__copy{ animation: fade-swap 0.4s ease; }
+@keyframes fade-swap{ from{ opacity: 0; transform: translateY(6px); } to{ opacity: 1; transform: translateY(0); } }
+.tabs__copy-title{
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem;
+}
+.tabs__copy-body{
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.35;
+  max-width: 26ch;
+  margin: 0;
+}
 
-    function paint(index) {
-      const tab = CONFIG.tabs[index];
-      visual.innerHTML = `
-        <div class="tabs__visual-art">${tab.icon}</div>
-        <div class="tabs__visual-card">
-          <div class="tabs__visual-metric">${tab.metricValue}</div>
-          <div>${tab.metricLabel}</div>
-        </div>
-      `;
-      copy.innerHTML = `
-        <p class="tabs__copy-title">${tab.label}</p>
-        <p class="tabs__copy-body">${tab.title}</p>
-        <p style="color:var(--muted); margin-top:1rem; max-width:38ch;">${tab.body}</p>
-      `;
-      [...nav.children].forEach((btn, i) => btn.classList.toggle("is-active", i === index));
-    }
+/* ============================================================
+   APPROACH / STEPS
+   ============================================================ */
+.approach{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) var(--gutter) clamp(4rem, 8vw, 6rem);
+  border-top: 1px solid var(--line);
+}
+.steps{
+  position: relative;
+  list-style: none;
+  margin: 3rem 0 0;
+  padding: 0 0 0 2.5rem;
+  display: grid;
+  gap: 2.5rem;
+  max-width: 40rem;
+}
+.steps__line{
+  position: absolute;
+  left: 0.5rem;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 1px;
+  background: var(--line);
+}
+.steps__line-fill{
+  width: 100%;
+  height: 0%;
+  background: var(--ink);
+  transition: height 0.2s ease-out;
+}
+.step{ position: relative; }
+.step__index{
+  position: absolute;
+  left: -2.5rem;
+  top: 0;
+  width: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-family: var(--display);
+}
+.step__title{
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+}
+.step__body{ color: var(--muted); margin: 0; max-width: 42ch; }
 
-    CONFIG.tabs.forEach((tab, index) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.textContent = tab.label;
-      btn.addEventListener("click", () => paint(index));
-      nav.appendChild(btn);
-    });
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats{
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.stats__grid{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 3.5rem) var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 2rem;
+}
+.stat__number{
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 600;
+}
+.stat__label{ color: var(--muted); font-size: 0.88rem; margin-top: 0.35rem; }
 
-    paint(0);
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 6rem) var(--gutter);
+}
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+.contact-form{
+  max-width: 32rem;
+  margin: 1.75rem 0 2.5rem;
+  display: grid;
+  gap: 1rem;
+}
+.contact-form__row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 560px){
+  .contact-form__row{ grid-template-columns: 1fr; }
+}
+.contact-form__field{
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.contact-form__field input,
+.contact-form__field textarea{
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+.contact-form__field input:focus,
+.contact-form__field textarea:focus{
+  outline: none;
+  border-color: rgba(255,255,255,0.35);
+}
+.contact-form__submit{
+  justify-self: start;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.6rem;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+.contact-form__submit:disabled{
+  opacity: 0.6;
+  cursor: default;
+}
+.contact-form__status{
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+.contact-form__status.is-success{ color: #5FBF77; }
+.contact-form__status.is-error{ color: #E08585; }
+
+.contact__email-row{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+.contact__email{
+  display: inline-block;
+  position: relative;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  font-weight: 600;
+  text-decoration: none;
+  padding-bottom: 4px;
+}
+.contact__email::after{
+  content: '';
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 2px;
+  background: var(--ink);
+  transition: right 0.3s ease;
+}
+.contact__email:hover::after{ right: 0; }
+.contact__copy{
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  align-self: center;
+}
+.contact__copy:hover{ color: var(--ink); border-color: rgba(255,255,255,0.3); }
+.contact__copy.is-copied{ color: var(--ink); border-color: rgba(255,255,255,0.4); }
+.contact__socials{
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.contact__socials a{
+  position: relative;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.92rem;
+  padding-bottom: 2px;
+  transition: color 0.2s ease;
+}
+.contact__socials a::after{
+  content: '';
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--ink);
+  transition: right 0.25s ease;
+}
+.contact__socials a:hover{ color: var(--ink); }
+.contact__socials a:hover::after{ right: 0; }
+.contact__actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+.contact__share{
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.contact__share:hover{ color: var(--ink); border-color: rgba(255,255,255,0.3); }
+.contact__share.is-copied{ color: var(--ink); border-color: rgba(255,255,255,0.4); }
+
+/* ============================================================
+   EXPERIENCE
+   ============================================================ */
+.experience{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+.experience__list{
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 2.25rem;
+  max-width: 46rem;
+}
+.experience__item{
+  padding-bottom: 2.25rem;
+  border-bottom: 1px solid var(--line);
+}
+.experience__item:last-child{ border-bottom: none; padding-bottom: 0; }
+.experience__top{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 1.5rem;
+}
+.experience__role{
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.experience__dates{
+  color: var(--muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.experience__company{
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-top: 0.3rem;
+}
+.experience__bullets{
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  display: grid;
+  gap: 0.55rem;
+  max-width: 44ch;
+}
+
+/* ============================================================
+   CREDENTIALS (education & certifications)
+   ============================================================ */
+.credentials{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+.credentials__grid{
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+.credential{
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.6rem 1.75rem;
+  background: var(--bg-raised);
+  transition: transform 0.15s ease, border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.credential:hover{ border-color: rgba(255,255,255,0.25); }
+.credential__tag{
+  display: inline-block;
+  font-size: 0.74rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+.credential__title{
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+.credential__meta{
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin-top: 0.5rem;
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+.faq__list{
+  margin-top: 2rem;
+  max-width: 44rem;
+  border-top: 1px solid var(--line);
+}
+.faq-item{ border-bottom: 1px solid var(--line); }
+.faq-item__q{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: none;
+  border: none;
+  color: var(--ink);
+  text-align: left;
+  font: inherit;
+  font-family: var(--display);
+  font-size: 1.02rem;
+  font-weight: 500;
+  padding: 1.35rem 0;
+  cursor: pointer;
+}
+.faq-item__icon{
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+.faq-item__icon::before,
+.faq-item__icon::after{
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  background: var(--ink);
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.faq-item__icon::before{ width: 12px; height: 1.5px; }
+.faq-item__icon::after{ width: 1.5px; height: 12px; }
+.faq-item.is-open .faq-item__icon::after{ transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+.faq-item__a-wrap{
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+.faq-item.is-open .faq-item__a-wrap{ grid-template-rows: 1fr; }
+.faq-item__a-inner{ overflow: hidden; }
+.faq-item__a{
+  margin: 0 0 1.35rem;
+  color: var(--muted);
+  max-width: 40rem;
+}
+
+/* ============================================================
+   SCROLL REVEAL (fade + rise, triggered once as elements enter view)
+   ============================================================ */
+.reveal{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+.back-to-top{
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 40;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--pill);
+  color: var(--pill-ink-solid);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.back-to-top.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover{ transform: translateY(-3px); }
+
+/* ============================================================
+   MARQUEE (scrolling skills strip)
+   ============================================================ */
+.marquee{
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  padding: 1.5rem 0;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee__track{
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: 2.5rem;
+  animation: marquee-scroll 32s linear infinite;
+}
+.marquee:hover .marquee__track{ animation-play-state: paused; }
+.marquee__item{
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  color: var(--muted);
+  font-family: var(--display);
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+.marquee__item span{ opacity: 0.4; }
+@keyframes marquee-scroll{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce){
+  .marquee__track{ animation: none; flex-wrap: wrap; }
+}
+
+/* ============================================================
+   RIGHT NOW (small status line under the about blurb)
+   ============================================================ */
+.right-now{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: var(--bg-raised);
+}
+.right-now__dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pill);
+  flex-shrink: 0;
+  animation: status-pulse 2s ease-out infinite;
+}
+
+/* ============================================================
+   HERO SCROLL CUE
+   ============================================================ */
+.hero__scroll-cue{
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.5rem, 5vh, 3rem);
+  transform: translateX(-50%);
+  z-index: 2;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  cursor: pointer;
+  animation: scroll-cue-bounce 2.2s ease-in-out infinite;
+}
+.hero__scroll-cue:hover{ color: var(--ink); }
+@keyframes scroll-cue-bounce{
+  0%, 100%{ transform: translateX(-50%) translateY(0); }
+  50%{ transform: translateX(-50%) translateY(8px); }
+}
+
+/* ============================================================
+   CURSOR SPARKLE TRAIL
+   echoes the sparkle mark in the logo as tiny fading particles
+   ============================================================ */
+.cursor-sparkle{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--pill);
+  pointer-events: none;
+  z-index: 199;
+  clip-path: polygon(50% 0%, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0% 50%, 39% 35%);
+  opacity: 0.9;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.cursor-sparkle.is-fading{
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.2) rotate(45deg);
+}
+@media (pointer: coarse), (prefers-reduced-motion: reduce){
+  .cursor-sparkle{ display: none; }
+}
+
+
+/* ============================================================
+   PRACTICE PROJECT (sample CRM case tracker)
+   ============================================================ */
+.visually-hidden{
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.projects{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5rem) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+.practice{ margin-top: 2rem; }
+.practice__label{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  margin-bottom: 1.25rem;
+}
+.practice__tag{
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.practice__label-note{ font-size: 0.82rem; color: var(--muted); }
+.practice__intro{
+  max-width: 62ch;
+  color: var(--muted);
+  margin: 0 0 2rem;
+}
+
+.practice__stages{
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.practice__stage{
+  display: flex;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-raised);
+}
+.practice__stage-n{
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: var(--display);
+}
+.practice__stage strong{ display: block; font-family: var(--display); font-size: 0.95rem; font-weight: 600; }
+.practice__stage p{ margin: 0.25rem 0 0; font-size: 0.82rem; color: var(--muted); line-height: 1.45; }
+
+.practice__summary{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.practice__chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.9rem;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.practice__chip strong{ color: var(--ink); font-weight: 600; }
+.practice__chip:hover{ color: var(--ink); border-color: rgba(255,255,255,0.3); }
+.practice__chip.is-active{ color: var(--ink); border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06); }
+.practice__chip.is-alert strong{ color: #E08585; }
+
+.practice__table-wrap{
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow-x: auto;
+  background: var(--bg-raised);
+}
+.practice__table{
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.practice__table th{
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.78rem;
+  color: var(--muted);
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+.practice__table td{
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+.practice__table tbody tr:last-child td{ border-bottom: none; }
+.practice__id{ font-family: var(--display); color: var(--muted); white-space: nowrap; }
+.practice__issue{ color: var(--muted); }
+.practice__empty{ text-align: center; color: var(--muted); padding: 2rem 1rem !important; }
+
+.practice__priority{ display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; }
+.practice__priority::before{
+  content: '';
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--muted);
+}
+.practice__priority--high::before{ background: #E08585; }
+.practice__priority--medium::before{ background: #E0B85F; }
+.practice__priority--low::before{ background: #7A7D80; }
+
+.practice__status{
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.practice__status--resolved{ color: #5FBF77; border-color: rgba(95,191,119,0.4); }
+.practice__status--in-progress{ color: var(--ink); border-color: rgba(255,255,255,0.3); }
+.is-overdue{ color: #E08585; }
+
+.practice__action{
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.practice__action:hover{ color: var(--ink); border-color: rgba(255,255,255,0.35); }
+
+.practice__foot{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin: 1rem 0 2.5rem;
+}
+.practice__reset{
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.practice__reset:hover{ color: var(--ink); border-color: rgba(255,255,255,0.3); }
+.practice__hint{ font-size: 0.82rem; color: var(--muted); }
+
+.practice__cols{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+@media (max-width: 760px){ .practice__cols{ grid-template-columns: 1fr; } }
+.practice__cols h3{
+  margin: 0 0 1rem;
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 600;
+}
+.practice__log ul, .practice__notes ul{
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.practice__log li{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.practice__log time{ color: var(--ink); white-space: nowrap; font-size: 0.8rem; }
+.practice__log-empty{ display: block !important; }
+.practice__notes li{
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.practice__notes li::before{
+  content: '';
+  position: absolute;
+  left: 0; top: 0.55em;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--pill);
+}
+
+/* phones: turn each table row into a stacked card */
+@media (max-width: 640px){
+  .practice__table{ min-width: 0; }
+  .practice__table thead{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+  .practice__table, .practice__table tbody, .practice__table tr, .practice__table td{ display: block; width: 100%; }
+  .practice__table tr{ padding: 0.9rem 1rem; border-bottom: 1px solid var(--line); }
+  .practice__table tbody tr:last-child{ border-bottom: none; }
+  .practice__table td{ border: none; padding: 0.3rem 0; display: flex; justify-content: space-between; gap: 1rem; text-align: right; }
+  .practice__table td::before{ content: attr(data-label); color: var(--muted); font-size: 0.78rem; flex-shrink: 0; }
+  .practice__table td[data-label=""]::before{ content: none; }
+  .practice__table td[data-label=""]{ padding-top: 0.6rem; }
+  .practice__empty{ display: block !important; }
+}
+
+@media print{
+  .practice__action, .practice__reset, .practice__hint, .practice__summary{ display: none !important; }
+  .practice__table-wrap{ background: none !important; border-color: #ccc !important; overflow: visible; }
+  .practice__table{ min-width: 0; }
+  .practice__tag{ color: #000 !important; border-color: #000 !important; }
+  .practice__stage, .practice__chip{ background: none !important; border-color: #ccc !important; }
+  .practice__table th, .practice__table td, .practice__stage-n{ border-color: #ccc !important; }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem var(--gutter) 2rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--line);
+}
+.site-footer__left{ display: flex; align-items: center; gap: 0.6rem; }
+.site-footer__right{ display: flex; align-items: center; gap: 0.6rem; }
+.site-footer__sep{ opacity: 0.5; }
+.site-footer__changelog{
+  background: none;
+  border: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.site-footer__changelog:hover{
+  color: var(--ink);
+  text-decoration-color: var(--line);
+}
+
+/* ============================================================
+   CHANGELOG ("What's new") PANEL
+   ============================================================ */
+.changelog{
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(10,11,12,0.7);
+  backdrop-filter: blur(6px);
+}
+.changelog[hidden]{ display: none; }
+.changelog__panel{
+  width: min(480px, 100%);
+  max-height: 70vh;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: changelog-in 0.2s ease-out;
+}
+@keyframes changelog-in{
+  from{ opacity: 0; transform: translateY(12px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+.changelog__head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+.changelog__head h3{
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.changelog__close{
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0.3rem;
+  display: flex;
+}
+.changelog__close:hover{ color: var(--ink); }
+.changelog [data-changelog-list]{
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1.25rem 1.25rem;
+  overflow-y: auto;
+  display: grid;
+  gap: 0.9rem;
+}
+.changelog [data-changelog-list] li{
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.changelog [data-changelog-list] li::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--pill);
+}
+
+/* ============================================================
+   IMAGE FADE-IN ON LOAD
+   ============================================================ */
+img{
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+img.is-loaded{
+  opacity: 1;
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print{
+  .fabric-bg,
+  .scroll-progress,
+  .site-header,
+  .mobile-nav,
+  .back-to-top,
+  .skip-link,
+  .cursor-sparkle,
+  .hero__scroll-cue,
+  .hero__bg,
+  .contact__share,
+  .contact__copy{
+    display: none !important;
   }
-
-  function renderSteps() {
-    const stepsEl = document.querySelector("[data-steps]");
-    CONFIG.steps.forEach((step, index) => {
-      const li = document.createElement("li");
-      li.className = "step reveal";
-      li.style.transitionDelay = `${index * 0.08}s`;
-      li.innerHTML = `
-        <span class="step__index">${index + 1}</span>
-        <h3 class="step__title">${step.title}</h3>
-        <p class="step__body">${step.body}</p>
-      `;
-      stepsEl.appendChild(li);
-    });
+  html, body{
+    background: #fff !important;
+    color: #111 !important;
   }
-
-  function renderExperience() {
-    const list = document.querySelector("[data-experience-list]");
-    CONFIG.experience.forEach((job, index) => {
-      const item = document.createElement("div");
-      item.className = "experience__item reveal";
-      item.style.transitionDelay = `${index * 0.1}s`;
-      item.innerHTML = `
-        <div class="experience__top">
-          <span class="experience__role">${job.role}</span>
-          <span class="experience__dates">${job.dates}</span>
-        </div>
-        <div class="experience__company">${job.company}</div>
-        <ul class="experience__bullets">
-          ${job.bullets.map(b => `<li>${b}</li>`).join("")}
-        </ul>
-      `;
-      list.appendChild(item);
-    });
+  * {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
-
-  function renderCredentials() {
-    const grid = document.querySelector("[data-credentials-grid]");
-    CONFIG.credentials.forEach((c, index) => {
-      const card = document.createElement("div");
-      card.className = "credential reveal";
-      card.style.transitionDelay = `${index * 0.1}s`;
-      card.innerHTML = `
-        ${c.tag ? `<span class="credential__tag">${c.tag}</span>` : ""}
-        <p class="credential__title">${c.title}</p>
-        ${c.meta ? `<p class="credential__meta">${c.meta}</p>` : ""}
-      `;
-      grid.appendChild(card);
-    });
+  .hero{
+    min-height: 0;
+    padding: 0 0 1.5rem;
   }
-
-  function renderStats() {
-    const grid = document.querySelector("[data-stats]");
-    CONFIG.stats.forEach((stat, index) => {
-      const div = document.createElement("div");
-      div.className = "reveal";
-      div.style.transitionDelay = `${index * 0.1}s`;
-      div.innerHTML = `
-        <div class="stat__number" data-count="${stat.value}" data-suffix="${stat.suffix}">0${stat.suffix}</div>
-        <div class="stat__label">${stat.label}</div>
-      `;
-      grid.appendChild(div);
-    });
+  .hero__content{ transform: none !important; opacity: 1 !important; }
+  .hero__headline, .hero__sub, .hero__status, .hero__cta{
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
-
-  function renderFAQ() {
-    const list = document.querySelector("[data-faq-list]");
-    CONFIG.faq.forEach(item => {
-      const wrap = document.createElement("div");
-      wrap.className = "faq-item reveal";
-      wrap.innerHTML = `
-        <button type="button" class="faq-item__q" aria-expanded="false">
-          <span>${item.question}</span>
-          <span class="faq-item__icon" aria-hidden="true"></span>
-        </button>
-        <div class="faq-item__a-wrap">
-          <div class="faq-item__a-inner">
-            <p class="faq-item__a">${item.answer}</p>
-          </div>
-        </div>
-      `;
-      const btn = wrap.querySelector(".faq-item__q");
-      btn.addEventListener("click", () => {
-        const open = wrap.classList.toggle("is-open");
-        btn.setAttribute("aria-expanded", String(open));
-      });
-      list.appendChild(wrap);
-    });
-
-    // arrow-key navigation between questions, Home/End to jump to first/last
-    const buttons = Array.from(list.querySelectorAll(".faq-item__q"));
-    buttons.forEach((btn, i) => {
-      btn.addEventListener("keydown", e => {
-        let target = null;
-        if (e.key === "ArrowDown") target = buttons[i + 1];
-        else if (e.key === "ArrowUp") target = buttons[i - 1];
-        else if (e.key === "Home") target = buttons[0];
-        else if (e.key === "End") target = buttons[buttons.length - 1];
-        if (target) {
-          e.preventDefault();
-          target.focus();
-        }
-      });
-    });
+  .hero__cta{ display: none; }
+  h1, h2, h3, .step__title, .experience__role, .credential__title{
+    color: #000 !important;
   }
-
-  /* --- scroll progress bar --- */
-  function wireScrollProgress() {
-    const bar = document.querySelector("[data-scroll-progress]");
-    const header = document.querySelector("[data-header]");
-    function update() {
-      const scrollTop = window.scrollY;
-      const height = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = `${(scrollTop / height) * 100}%`;
-      header.classList.toggle("is-scrolled", scrollTop > 40);
-    }
-    document.addEventListener("scroll", update, { passive: true });
-    update();
+  p, li, .section-heading, .stat__label, .experience__company, .credential__meta{
+    color: #333 !important;
   }
-
-  /* --- hero parallax --- */
-  function wireParallax() {
-    const layer = document.querySelector("[data-parallax]");
-    const hero = document.getElementById("hero");
-    function update() {
-      const rect = hero.getBoundingClientRect();
-      const progress = Math.min(Math.max(-rect.top / rect.height, 0), 1);
-      layer.style.transform = `translateY(${progress * 40}px)`;
-    }
-    document.addEventListener("scroll", update, { passive: true });
-    update();
+  a{ color: #000 !important; text-decoration: underline; }
+  .tabs__visual, .about-intro__photo{ display: none; }
+  .tabs__nav{ display: none; }
+  .tabs__panel{ display: block; }
+  section{
+    border-top: 1px solid #ccc !important;
+    padding: 1rem 0 !important;
+    page-break-inside: avoid;
   }
-
-  /* --- animated step line + count-up stats, both scroll-triggered --- */
-  function wireReveals() {
-    const stepsSection = document.querySelector(".approach");
-    const fill = document.querySelector("[data-steps-fill]");
-    const statsSection = document.querySelector(".stats");
-    let statsAnimated = false;
-
-    const io = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-
-          if (entry.target === stepsSection) {
-            fill.style.height = "100%";
-          }
-
-          if (entry.target === statsSection && !statsAnimated) {
-            statsAnimated = true;
-            document.querySelectorAll("[data-count]").forEach(el => {
-              const target = parseFloat(el.dataset.count);
-              const suffix = el.dataset.suffix || "";
-              const duration = 900;
-              const start = performance.now();
-              function tick(now) {
-                const t = Math.min((now - start) / duration, 1);
-                const eased = 1 - Math.pow(1 - t, 3);
-                el.textContent = `${Math.round(eased * target)}${suffix}`;
-                if (t < 1) requestAnimationFrame(tick);
-              }
-              requestAnimationFrame(tick);
-            });
-          }
-        });
-      },
-      { threshold: 0.4 }
-    );
-
-    io.observe(stepsSection);
-    io.observe(statsSection);
-  }
-
-  /* --- generic scroll reveal for headings, stats, steps, etc. --- */
-  function wireRevealObserver() {
-    const items = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    items.forEach(el => io.observe(el));
-  }
-
-  /* --- cursor-tracking glow on pill buttons + magnetic pull --- */
-  function wireButtonGlow() {
-    document.querySelectorAll(".btn-glow").forEach(btn => {
-      btn.addEventListener("mousemove", e => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        btn.style.setProperty("--x", `${x}px`);
-        btn.style.setProperty("--y", `${y}px`);
-
-        const cx = x - rect.width / 2;
-        const cy = y - rect.height / 2;
-        btn.style.transform = `translate(${cx * 0.18}px, ${cy * 0.35}px)`;
-      });
-      btn.addEventListener("mouseleave", () => {
-        btn.style.transform = "";
-      });
-    });
-  }
-
-  /* --- 3D tilt on testimonial cards --- */
-  function wireCardTilt() {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    document.querySelectorAll(".credential").forEach(card => {
-      card.addEventListener("mousemove", e => {
-        const rect = card.getBoundingClientRect();
-        const px = (e.clientX - rect.left) / rect.width - 0.5;
-        const py = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform = `perspective(700px) rotateX(${py * -8}deg) rotateY(${px * 10}deg) translateY(-4px)`;
-      });
-      card.addEventListener("mouseleave", () => {
-        card.style.transform = "";
-      });
-    });
-  }
-
-  /* --- custom cursor that grows over interactive elements --- */
-  function wireCustomCursor() {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    const dot = document.createElement("div");
-    dot.className = "cursor-dot";
-    document.body.appendChild(dot);
-
-    let x = window.innerWidth / 2, y = window.innerHeight / 2;
-    let tx = x, ty = y;
-
-    document.addEventListener("mousemove", e => { tx = e.clientX; ty = e.clientY; });
-
-    function loop() {
-      x += (tx - x) * 0.2;
-      y += (ty - y) * 0.2;
-      dot.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
-      requestAnimationFrame(loop);
-    }
-    loop();
-
-    document.querySelectorAll("a, button").forEach(el => {
-      el.addEventListener("mouseenter", () => dot.classList.add("is-active"));
-      el.addEventListener("mouseleave", () => dot.classList.remove("is-active"));
-    });
-  }
-
-  /* --- hero content fades and settles as you scroll past it --- */
-  function wireHeroScrollFade() {
-    const content = document.querySelector(".hero__content");
-    const hero = document.getElementById("hero");
-    function update() {
-      const rect = hero.getBoundingClientRect();
-      const progress = Math.min(Math.max(-rect.top / (rect.height * 0.8), 0), 1);
-      content.style.opacity = String(1 - progress);
-      content.style.transform = `scale(${1 - progress * 0.08}) translateY(${progress * -20}px)`;
-    }
-    document.addEventListener("scroll", update, { passive: true });
-    update();
-  }
-
-  /* --- subtle parallax on the about photo as you scroll to it --- */
-  function wireAboutPhotoParallax() {
-    const photo = document.querySelector("[data-about-photo]");
-    const img = document.querySelector("[data-profile-img]");
-    if (!photo || !img) return;
-    function update() {
-      const rect = photo.getBoundingClientRect();
-      const center = rect.top + rect.height / 2 - window.innerHeight / 2;
-      const progress = Math.max(Math.min(center / window.innerHeight, 1), -1);
-      img.style.transform = `translateY(${progress * -14}px)`;
-    }
-    document.addEventListener("scroll", update, { passive: true });
-    update();
-  }
-
-  /* --- header nav highlights the section currently in view --- */
-  function wireScrollSpy() {
-    const navLinks = document.querySelectorAll(".site-header__nav a");
-    const map = {};
-    navLinks.forEach(link => {
-      const id = link.getAttribute("href").replace("#", "");
-      map[id] = link;
-    });
-    const sections = Object.keys(map)
-      .map(id => document.getElementById(id))
-      .filter(Boolean);
-    if (!sections.length) return;
-
-    const io = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navLinks.forEach(l => l.classList.remove("is-active"));
-            const active = map[entry.target.id];
-            if (active) active.classList.add("is-active");
-          }
-        });
-      },
-      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
-    );
-    sections.forEach(s => io.observe(s));
-  }
-
-  /* --- copy email to clipboard --- */
-  function wireCopyEmail() {
-    const btn = document.querySelector("[data-copy-email]");
-    if (!btn) return;
-    btn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(CONFIG.email);
-        const original = btn.textContent;
-        btn.textContent = "Copied!";
-        btn.classList.add("is-copied");
-        setTimeout(() => {
-          btn.textContent = original;
-          btn.classList.remove("is-copied");
-        }, 1800);
-      } catch (e) {
-        // clipboard API unavailable — the email link itself still works
-      }
-    });
-  }
-
-  /* --- back to top --- */
-  function wireBackToTop() {
-    const btn = document.querySelector("[data-back-to-top]");
-    if (!btn) return;
-    function update() {
-      btn.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.8);
-    }
-    document.addEventListener("scroll", update, { passive: true });
-    btn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-    update();
-  }
-
-  /* --- hero scroll cue --- */
-  function wireScrollCue() {
-    const cue = document.querySelector("[data-scroll-cue]");
-    if (!cue) return;
-    cue.addEventListener("click", () => {
-      document.getElementById("approach")?.scrollIntoView({ behavior: "smooth" });
-    });
-  }
-
-  /* --- cursor sparkle trail, echoing the logo mark --- */
-  function wireCursorSparkles() {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let lastSpawn = 0;
-    document.addEventListener("mousemove", e => {
-      const now = performance.now();
-      if (now - lastSpawn < 90) return;
-      lastSpawn = now;
-
-      const sparkle = document.createElement("div");
-      sparkle.className = "cursor-sparkle";
-      const jitterX = (Math.random() - 0.5) * 10;
-      const jitterY = (Math.random() - 0.5) * 10;
-      sparkle.style.left = `${e.clientX + jitterX}px`;
-      sparkle.style.top = `${e.clientY + jitterY}px`;
-      const scale = 0.7 + Math.random() * 0.6;
-      sparkle.style.transform = `translate(-50%, -50%) scale(${scale}) rotate(${Math.random() * 30 - 15}deg)`;
-      document.body.appendChild(sparkle);
-
-      requestAnimationFrame(() => sparkle.classList.add("is-fading"));
-      setTimeout(() => sparkle.remove(), 750);
-    });
-  }
-
-  /* --- live local time, shown in the footer --- */
-  function wireLocalTime() {
-    const el = document.querySelector("[data-local-time]");
-    if (!el) return;
-    function update() {
-      const time = new Intl.DateTimeFormat("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-        timeZone: "Asia/Manila"
-      }).format(new Date());
-      el.textContent = `${time} in Cebu`;
-    }
-    update();
-    setInterval(update, 30000);
-  }
-
-  /* --- share this profile --- */
-  function wireShare() {
-    const btn = document.querySelector("[data-share]");
-    if (!btn) return;
-    btn.addEventListener("click", async () => {
-      const shareData = {
-        title: document.title,
-        text: `${CONFIG.name} — ${CONFIG.availabilityStatus}`,
-        url: window.location.href
-      };
-      try {
-        if (navigator.share) {
-          await navigator.share(shareData);
-        } else {
-          await navigator.clipboard.writeText(shareData.url);
-          const original = btn.textContent;
-          btn.textContent = "Link copied!";
-          btn.classList.add("is-copied");
-          setTimeout(() => {
-            btn.textContent = original;
-            btn.classList.remove("is-copied");
-          }, 1800);
-        }
-      } catch (e) {
-        // user cancelled the share sheet, or clipboard unavailable — no action needed
-      }
-    });
-  }
-
-  /* --- fade images in once they've actually loaded --- */
-  function wireImageFadeIn() {
-    document.querySelectorAll("img").forEach(img => {
-      if (img.complete && img.naturalWidth > 0) {
-        img.classList.add("is-loaded");
-      } else {
-        img.addEventListener("load", () => img.classList.add("is-loaded"), { once: true });
-        img.addEventListener("error", () => img.classList.add("is-loaded"), { once: true });
-      }
-    });
-  }
-
-  /* --- "What's new" changelog panel --- */
-  function renderChangelog() {
-    const list = document.querySelector("[data-changelog-list]");
-    if (!list) return;
-    CONFIG.changelog.forEach(entry => {
-      const li = document.createElement("li");
-      li.textContent = entry;
-      list.appendChild(li);
-    });
-  }
-
-  function wireChangelog() {
-    const trigger = document.querySelector("[data-changelog-trigger]");
-    const overlay = document.querySelector("[data-changelog]");
-    const closeBtn = document.querySelector("[data-changelog-close]");
-    if (!trigger || !overlay || !closeBtn) return;
-
-    function open() { overlay.hidden = false; }
-    function close() { overlay.hidden = true; }
-
-    trigger.addEventListener("click", open);
-    closeBtn.addEventListener("click", close);
-    overlay.addEventListener("click", e => { if (e.target === overlay) close(); });
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape" && !overlay.hidden) close();
-    });
-  }
-
-  /* --- contact form (works if CONFIG.formEndpoint is set) --- */
-  function wireContactForm() {
-    const form = document.querySelector("[data-contact-form]");
-    const status = document.querySelector("[data-form-status]");
-    if (!form || !status) return;
-
-    if (!CONFIG.formEndpoint) {
-      form.remove();
-      return;
-    }
-
-    form.addEventListener("submit", async e => {
-      e.preventDefault();
-      const submitBtn = form.querySelector(".contact-form__submit");
-      submitBtn.disabled = true;
-      status.textContent = "Sending…";
-      status.className = "contact-form__status";
-
-      try {
-        const res = await fetch(CONFIG.formEndpoint, {
-          method: "POST",
-          headers: { Accept: "application/json" },
-          body: new FormData(form)
-        });
-        if (res.ok) {
-          status.textContent = "Message sent — thanks for reaching out!";
-          status.className = "contact-form__status is-success";
-          form.reset();
-        } else {
-          throw new Error("Request failed");
-        }
-      } catch (err) {
-        status.textContent = `Something went wrong — feel free to email me directly at ${CONFIG.email} instead.`;
-        status.className = "contact-form__status is-error";
-      } finally {
-        submitBtn.disabled = false;
-      }
-    });
-  }
-
-  /* --- time-of-day greeting based on Cebu local time --- */
-  function wireGreeting() {
-    const el = document.querySelector("[data-greeting]");
-    if (!el) return;
-    const hour = parseInt(
-      new Intl.DateTimeFormat("en-US", { hour: "numeric", hour12: false, timeZone: "Asia/Manila" }).format(new Date()),
-      10
-    );
-    let greeting = "Good evening";
-    if (hour < 12) greeting = "Good morning";
-    else if (hour < 18) greeting = "Good afternoon";
-    el.textContent = `${greeting} from Cebu`;
-  }
-
-  /* --- download a .vcf contact card --- */
-  function wireSaveContact() {
-    const btn = document.querySelector("[data-save-contact]");
-    if (!btn) return;
-    btn.addEventListener("click", () => {
-      const vcard = [
-        "BEGIN:VCARD",
-        "VERSION:3.0",
-        `FN:${CONFIG.name}`,
-        "TITLE:Customer Service Representative",
-        `EMAIL;TYPE=INTERNET:${CONFIG.email}`,
-        `URL:${CONFIG.socials.find(s => s.label === "LinkedIn")?.url || ""}`,
-        "END:VCARD"
-      ].join("\r\n");
-
-      const blob = new Blob([vcard], { type: "text/vcard" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${CONFIG.name.toLowerCase().replace(/\s+/g, "-")}.vcf`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    });
-  }
-
-  /* --- practice project: sample CRM case tracker (fictional data) --- */
-  function wirePracticeProject() {
-    const cfg = CONFIG.practice;
-    const rowsEl = document.querySelector("[data-practice-rows]");
-    const summaryEl = document.querySelector("[data-practice-summary]");
-    const stagesEl = document.querySelector("[data-practice-stages]");
-    const logEl = document.querySelector("[data-practice-log]");
-    const notesEl = document.querySelector("[data-practice-notes]");
-    const resetBtn = document.querySelector("[data-practice-reset]");
-    if (!cfg || !rowsEl || !summaryEl || !stagesEl || !logEl || !notesEl || !resetBtn) return;
-
-    document.querySelector("[data-projects-heading]").textContent = CONFIG.projectsHeading;
-    document.querySelector("[data-practice-intro]").textContent = cfg.intro;
-    document.querySelector("[data-practice-hint]").textContent = cfg.hint;
-
-    const order = cfg.statuses.map(s => s.id);
-    const label = id => cfg.statuses.find(s => s.id === id).label;
-    const fmt = new Intl.DateTimeFormat("en-US", { weekday: "short", month: "short", day: "numeric" });
-    const timeFmt = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit" });
-
-    function startOfToday() {
-      const d = new Date();
-      d.setHours(0, 0, 0, 0);
-      return d;
-    }
-    function addDays(days) {
-      const d = startOfToday();
-      d.setDate(d.getDate() + days);
-      return d;
-    }
-
-    let cases = [];
-    let filter = null;
-    let log = [];
-
-    function load() {
-      cases = cfg.cases.map(c => ({
-        ...c,
-        followUp: c.followUpDays === null ? null : addDays(c.followUpDays)
-      }));
-      filter = null;
-      log = [];
-    }
-
-    function isOverdue(c) {
-      return c.status !== "resolved" && c.followUp && c.followUp < startOfToday();
-    }
-
-    function nextStatus(c) {
-      if (c.status === "resolved") return "in-progress"; // reopen
-      return order[order.indexOf(c.status) + 1];
-    }
-
-    function advance(id) {
-      const c = cases.find(x => x.id === id);
-      if (!c) return;
-      const reopened = c.status === "resolved";
-      c.status = nextStatus(c);
-      if (c.status === "resolved") {
-        c.followUp = null;
-      } else {
-        c.followUp = addDays(c.status === "awaiting" ? 3 : 1);
-      }
-      const note = c.status === "resolved"
-        ? `${c.id} marked Resolved after confirming with the customer`
-        : `${c.id} ${reopened ? "reopened and moved" : "moved"} to ${label(c.status)}, follow-up set for ${fmt.format(c.followUp)}`;
-      log.unshift({ time: timeFmt.format(new Date()), note });
-      log = log.slice(0, 6);
-      render();
-      document.querySelector(`[data-advance="${id}"]`)?.focus();
-    }
-
-    function visibleCases() {
-      let list = cases.slice();
-      if (filter === "overdue") list = list.filter(isOverdue);
-      else if (filter) list = list.filter(c => c.status === filter);
-      // open cases first, soonest follow-up first, resolved last
-      return list.sort((a, b) => {
-        if ((a.status === "resolved") !== (b.status === "resolved")) return a.status === "resolved" ? 1 : -1;
-        const ad = a.followUp ? a.followUp.getTime() : Infinity;
-        const bd = b.followUp ? b.followUp.getTime() : Infinity;
-        return ad - bd;
-      });
-    }
-
-    function renderSummary() {
-      const chips = [{ id: null, label: "All", count: cases.length }];
-      cfg.statuses.forEach(s => chips.push({ id: s.id, label: s.label, count: cases.filter(c => c.status === s.id).length }));
-      chips.push({ id: "overdue", label: "Overdue", count: cases.filter(isOverdue).length });
-      summaryEl.innerHTML = "";
-      chips.forEach(chip => {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "practice__chip" + (filter === chip.id ? " is-active" : "") + (chip.id === "overdue" && chip.count ? " is-alert" : "");
-        b.setAttribute("aria-pressed", String(filter === chip.id));
-        b.innerHTML = `<span>${chip.label}</span><strong>${chip.count}</strong>`;
-        b.addEventListener("click", () => {
-          filter = filter === chip.id ? null : chip.id;
-          render();
-        });
-        summaryEl.appendChild(b);
-      });
-    }
-
-    function renderRows() {
-      const list = visibleCases();
-      rowsEl.innerHTML = "";
-      if (!list.length) {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<td colspan="7" class="practice__empty">No cases match this filter.</td>`;
-        rowsEl.appendChild(tr);
-        return;
-      }
-      list.forEach(c => {
-        const overdue = isOverdue(c);
-        const tr = document.createElement("tr");
-        const nextLabel = c.status === "resolved" ? "Reopen" : `Move to ${label(nextStatus(c))}`;
-        tr.innerHTML = `
-          <td data-label="Case" class="practice__id">${c.id}</td>
-          <td data-label="Customer">${c.customer}</td>
-          <td data-label="Issue" class="practice__issue">${c.issue}</td>
-          <td data-label="Priority"><span class="practice__priority practice__priority--${c.priority.toLowerCase()}">${c.priority}</span></td>
-          <td data-label="Status"><span class="practice__status practice__status--${c.status}">${label(c.status)}</span></td>
-          <td data-label="Follow-up" class="${overdue ? "is-overdue" : ""}">${c.followUp ? fmt.format(c.followUp) + (overdue ? " (overdue)" : "") : "&mdash;"}</td>
-          <td data-label=""><button type="button" class="practice__action" data-advance="${c.id}" aria-label="${c.id}: ${nextLabel}">${nextLabel}</button></td>
-        `;
-        tr.querySelector("[data-advance]").addEventListener("click", () => advance(c.id));
-        rowsEl.appendChild(tr);
-      });
-    }
-
-    function renderLog() {
-      logEl.innerHTML = "";
-      if (!log.length) {
-        logEl.innerHTML = `<li class="practice__log-empty">No changes yet. Move a case to see it recorded here.</li>`;
-        return;
-      }
-      log.forEach(entry => {
-        const li = document.createElement("li");
-        li.innerHTML = `<time>${entry.time}</time><span>${entry.note}</span>`;
-        logEl.appendChild(li);
-      });
-    }
-
-    function render() {
-      renderSummary();
-      renderRows();
-      renderLog();
-    }
-
-    // static parts: workflow stages and organization notes
-    cfg.statuses.forEach((s, i) => {
-      const li = document.createElement("li");
-      li.className = "practice__stage";
-      li.innerHTML = `<span class="practice__stage-n">${i + 1}</span><div><strong>${s.label}</strong><p>${s.rule}</p></div>`;
-      stagesEl.appendChild(li);
-    });
-    cfg.notes.forEach(n => {
-      const li = document.createElement("li");
-      li.textContent = n;
-      notesEl.appendChild(li);
-    });
-
-    resetBtn.addEventListener("click", () => {
-      load();
-      render();
-    });
-
-    load();
-    render();
-  }
-
-  /* --- mobile menu --- */
-  function wireMobileMenu() {
-    const toggle = document.querySelector("[data-menu-toggle]");
-    const panel = document.querySelector("[data-mobile-nav]");
-
-    function setOpen(open) {
-      panel.classList.toggle("is-open", open);
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      document.body.style.overflow = open ? "hidden" : "";
-    }
-
-    toggle.addEventListener("click", () => {
-      setOpen(toggle.getAttribute("aria-expanded") !== "true");
-    });
-
-    panel.querySelectorAll("[data-mobile-link]").forEach(link => {
-      link.addEventListener("click", () => setOpen(false));
-    });
-
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") setOpen(false);
-    });
-
-    // if the viewport is resized past the mobile breakpoint while open, close it
-    const mq = window.matchMedia("(min-width: 761px)");
-    mq.addEventListener("change", e => { if (e.matches) setOpen(false); });
-  }
-
-  /* --- FAQ structured data, built from CONFIG.faq so it never drifts --- */
-  function injectFaqSchema() {
-    if (!CONFIG.faq || !CONFIG.faq.length) return;
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: CONFIG.faq.map(item => ({
-        "@type": "Question",
-        name: item.question,
-        acceptedAnswer: { "@type": "Answer", text: item.answer }
-      }))
-    };
-    const tag = document.createElement("script");
-    tag.type = "application/ld+json";
-    tag.textContent = JSON.stringify(schema);
-    document.head.appendChild(tag);
-  }
-
-  /* --- a small hello for anyone who opens devtools --- */
-  function logConsoleGreeting() {
-    try {
-      console.log(
-        "%cHey, looking under the hood?%c\nI like that. If you're a developer, recruiter, or just curious — say hi: " + CONFIG.email,
-        "color:#EDEDEC; background:#0A0B0C; font-size:14px; font-weight:600; padding:6px 10px; border-radius:6px 6px 0 0;",
-        "color:#9A9C9F; font-size:12px; line-height:1.6;"
-      );
-    } catch (e) {
-      // console unavailable — nothing to do
-    }
-  }
-
-  fillStaticText();
-  renderMarquee();
-  renderTabs();
-  renderSteps();
-  renderExperience();
-  renderStats();
-  renderCredentials();
-  wirePracticeProject();
-  renderFAQ();
-  renderChangelog();
-  wireScrollProgress();
-  wireParallax();
-  wireReveals();
-  wireRevealObserver();
-  wireButtonGlow();
-  wireCardTilt();
-  wireCustomCursor();
-  wireHeroScrollFade();
-  wireAboutPhotoParallax();
-  wireScrollSpy();
-  wireCopyEmail();
-  wireContactForm();
-  wireBackToTop();
-  wireScrollCue();
-  wireCursorSparkles();
-  wireLocalTime();
-  wireShare();
-  wireGreeting();
-  wireSaveContact();
-  wireImageFadeIn();
-  wireChangelog();
-  wireMobileMenu();
-  injectFaqSchema();
-  logConsoleGreeting();
-})();
+  .reveal{ opacity: 1 !important; transform: none !important; }
+}
