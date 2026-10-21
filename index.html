@@ -9,19 +9,23 @@
 <link rel="icon" href="images/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="canonical" href="https://my-portfolio-paris15.vercel.app/">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0A0B0C">
 <link rel="icon" type="image/png" sizes="512x512" href="images/icon-512.png">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Rhel Bencent Ruaya — Operations & Customer Experience Specialist">
 <meta property="og:description" content="Customer Service Representative in the BPO industry, handling Telco and Financial accounts in Cebu, Philippines.">
-<meta property="og:image" content="images/og-image.jpg">
+<meta property="og:image" content="https://my-portfolio-paris15.vercel.app/images/og-image.jpg">
+<meta property="og:url" content="https://my-portfolio-paris15.vercel.app/">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Rhel Bencent Ruaya — Operations & Customer Experience Specialist">
 <meta name="twitter:description" content="Customer Service Representative in the BPO industry, handling Telco and Financial accounts in Cebu, Philippines.">
-<meta name="twitter:image" content="images/og-image.jpg">
+<meta name="twitter:image" content="https://my-portfolio-paris15.vercel.app/images/og-image.jpg">
 
 <script type="application/ld+json">
 {
@@ -74,6 +78,7 @@
       <a href="#about">About</a>
       <a href="#approach">Approach</a>
       <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
     <a class="site-header__cta btn-glow" href="#contact">Get in touch</a>
@@ -86,6 +91,7 @@
     <a href="#about" data-mobile-link>About</a>
     <a href="#approach" data-mobile-link>Approach</a>
     <a href="#experience" data-mobile-link>Experience</a>
+    <a href="#projects" data-mobile-link>Projects</a>
     <a href="#contact" data-mobile-link>Contact</a>
     <a class="mobile-nav__cta btn-glow" href="#contact" data-mobile-link>Get in touch</a>
   </div>
@@ -150,6 +156,56 @@
     <section class="experience" id="experience">
       <h2 class="section-heading reveal" data-experience-heading></h2>
       <div class="experience__list" data-experience-list></div>
+    </section>
+
+    <section class="projects" id="projects">
+      <h2 class="section-heading reveal" data-projects-heading></h2>
+
+      <div class="practice reveal">
+        <div class="practice__label">
+          <span class="practice__tag">Self-directed practice project</span>
+          <span class="practice__label-note">Fictional data &middot; not client work</span>
+        </div>
+        <p class="practice__intro" data-practice-intro></p>
+
+        <ol class="practice__stages" data-practice-stages aria-label="Case workflow stages"></ol>
+
+        <div class="practice__summary" data-practice-summary role="group" aria-label="Filter cases by status"></div>
+
+        <div class="practice__table-wrap">
+          <table class="practice__table">
+            <caption class="visually-hidden">Sample customer case tracker with fictional data</caption>
+            <thead>
+              <tr>
+                <th scope="col">Case</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Issue</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Status</th>
+                <th scope="col">Follow-up</th>
+                <th scope="col"><span class="visually-hidden">Action</span></th>
+              </tr>
+            </thead>
+            <tbody data-practice-rows></tbody>
+          </table>
+        </div>
+
+        <div class="practice__foot">
+          <button type="button" class="practice__reset" data-practice-reset>Reset demo</button>
+          <span class="practice__hint" data-practice-hint></span>
+        </div>
+
+        <div class="practice__cols">
+          <div class="practice__log">
+            <h3>Activity log</h3>
+            <ul data-practice-log aria-live="polite"></ul>
+          </div>
+          <div class="practice__notes">
+            <h3>How I'd keep records organized</h3>
+            <ul data-practice-notes></ul>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="stats" id="stats">
